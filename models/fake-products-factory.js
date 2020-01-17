@@ -1,6 +1,6 @@
 const products = require('./products-memory');
 const faker = require('faker');
-module.exports =  (num)=>{
+module.exports = (num) => {
 
     const createRandomProduct = async () => {
         const key = faker.random.uuid();

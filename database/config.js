@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const ProductModel = require('../models/Product');
 
 const sequelize = new Sequelize({
     dialect: 'sqlite',
