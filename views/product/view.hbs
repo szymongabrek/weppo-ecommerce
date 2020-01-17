@@ -1,0 +1,8 @@
+{{#if product}}<h3>{{ product.name }}</h3>{{/if}}
+{{#if product}}<p>{{ product.description }}</p>{{/if}}
+<p>Key: {{ productkey }}</p>
+{{#if productkey }}
+    <hr/>
+    <p><a href="/notes/destroy?key={{notekey}}">Delete</a>
+     | <a href="/notes/edit?key={{notekey}}">Edit</a></p>
+{{/if}}

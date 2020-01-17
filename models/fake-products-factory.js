@@ -6,8 +6,8 @@ module.exports =  (num)=>{
         const key = faker.random.uuid();
         const name = faker.commerce.productName();
         const price = faker.commerce.price();
-        const description = faker.commerce.product();
-        const category = faker.commerce.productAdjective();
+        const description = faker.lorem.text();
+        const category = faker.commerce.product();
         const product = await products.create(key,name,price,description,category);
         return product;
     };

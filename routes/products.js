@@ -11,7 +11,15 @@ router.get('/', async (req, res, next) => {
   });
   let productlist = await Promise.all(keyPromises);
   
-  res.render('list', { title: 'Products', productlist: productlist });
+  res.render('product/list', { title: 'Products', productlist: productlist });
+});
+
+router.get('/view', async (req, res, next) => {
+  const product = await products.read(req.query.key);
+  res.render('product/productview', {
+      name: product ? product.name : "",
+      productkey: req.query.key, product: product
+  });
 });
 
 module.exports = router;
