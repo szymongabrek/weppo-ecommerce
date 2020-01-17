@@ -1,7 +1,18 @@
-<div>
-    {{#each productlist}}
-        <h3>[{{category}}]:{{name}} </h3>
-        {{description}}
-        <h4>{{price}}</h4>
-    {{/each}}
+{{#each productlist}}
+<div class="card m-1 p-1 bg-light">
+    <div class="bg-faded p-1">
+        <h4>
+            [{{category}}]:{{name}} 
+            <span class="badge badge-pill badge-primary" style="float:right">
+                <small>{{price}}</small>
+            </span>
+        </h4>
+    </div>
+    <div class="card-text bg-white p-1">{{description}}</div>
 </div>
+{{/each}}
+
+<div class="btn-group pull-right m-1">  
+   <...>            
+</div>                    
+

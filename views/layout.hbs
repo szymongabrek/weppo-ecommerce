@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <div>
-    <h1>{{title}}</h1>
 
-    {{{body}}}
+<head>
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <div class="navbar navbar-inverse bg-inverse" role="navigation">
+    <a class="navbar-brand" href="#">SIMPLE STORE</a>
+  </div>
+  <div class="row m-1 p-1">
+    <div id="categories" class="col-3">
+      Put something useful here later
     </div>
-  </body>
+    <div class="col-9">
+      {{{body}}}
+    </div>
+  </div>
+</body>
+
 </html>

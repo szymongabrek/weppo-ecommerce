@@ -8,7 +8,7 @@ module.exports =  (num)=>{
         const price = faker.commerce.price();
         const description = faker.lorem.text();
         const category = faker.commerce.product();
-        const product = await products.create(key,name,price,description,category);
+        const product = await products.create(key,name,description,price,category);
         return product;
     };
 
