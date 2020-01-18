@@ -5,7 +5,7 @@ const {
 
 const products = [];
 
-export async function create(key, name, description, price, category) {
+module.exports.create = async function create(key, name, description, price, category) {
     const db = await connectDB();
     const product = new Product(key, name, description, price, category);
     await new Promise((resolve, reject) => {
@@ -18,7 +18,7 @@ export async function create(key, name, description, price, category) {
     return product;
 }
 
-export async function update(key, name, description, price, category) {
+module.exports.update = async function update(key, name, description, price, category) {
     const db = await connectDB();
     const product = new Product(key, name, description, price, category);
     await new Promise((resolve, reject) => {
@@ -32,20 +32,23 @@ export async function update(key, name, description, price, category) {
     return product;
 }
 
-export async function read(key) {
+module.exports.read = async function read(key) {
     const db = await connectDB();
     const product = await new Promise((resolve, reject) => {
-        db.run(`SELECT * FROM products
-            WHERE id=?;`, [key], (err, row) => {
+        db.get(`SELECT * FROM products WHERE id = ?;`, [key], (err, row) => {            
             if (err) return reject(err);
             const product = new Product(row.id, row.name, row.description, row.price, row.category);
+            
+            console.log(key,row);
+                        
             resolve(product);
+              
         });
     });
     return product;
 }
 
-export async function destroy(key) {
+module.exports.destroy = async function destroy(key) {
     const db = await connectDB();
     return await new Promise((resolve, reject) => {
         db.run("DELETE FROM products WHERE id = ?;", [key], err => {
@@ -55,7 +58,7 @@ export async function destroy(key) {
     });
 }
 
-export async function keylist() {
+module.exports.keylist = async function keylist() {
     const db = await connectDB();
     const keyz = await new Promise((resolve, reject) => {
         const keyz = [];
@@ -67,7 +70,7 @@ export async function keylist() {
     return keyz;
 }
 
-export async function count() {
+module.exports.count = async function count() {
     const db = await connectDB();
     const count = await new Promise((resolve, reject) => {
         db.get("SELECT count(id) AS count FROM products",
@@ -79,7 +82,7 @@ export async function count() {
     return count;
 }
 
-export async function close() {
+module.exports.close = async function close() {
     const _db = db;
     db = undefined;
     return _db ? new Promise((resolve, reject) => {

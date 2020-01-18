@@ -6,7 +6,7 @@ const error = DBG('products:error-sqlite3');
 
 let db; // DB Connection here
 
-async function connectDB() {
+module.exports.connectDB = async function connectDB() {
     if (db) return db;
     const dbfile = process.env.SQLITE_FILE || 'db.sqlite3';
     await new Promise((resolve, reject) => {
