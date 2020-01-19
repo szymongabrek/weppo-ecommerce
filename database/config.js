@@ -1,9 +1,11 @@
 const Sequelize = require('sequelize');
-const ProductModel = require('../models/Product');
 
 const sequelize = new Sequelize({
     dialect: 'sqlite',
-    storage: 'db.sqlite3'
+    storage: 'db.sqlite3',
+    define: {
+        timestamps: false
+    },
 });
 
 sequelize
@@ -14,3 +16,5 @@ sequelize
   .catch(err => {
     console.error('Unable to connect to the database:', err);
   });
+
+module.exports = sequelize
