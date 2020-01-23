@@ -1,25 +1,14 @@
-module.exports = class Product {
-    #key;
-    #name;
-    #description;
-    #price;
-    #category;
-    constructor(key, name, description, price, category) { 
-        this.#key = key; 
-        this.#name = name; 
-        this.#description = description; 
-        this.#price = price; 
-        this.#category = category; 
+const Sequelize = require('sequelize');
+const sequelize = require('../database/config');
+const Model = Sequelize.Model;
 
-    } 
+class Product extends Model {}
+Product.init({
+    // key: Sequelize.UUID,
+    name: Sequelize.STRING,
+    description: Sequelize.STRING,
+    price: Sequelize.NUMBER,
+    category: Sequelize.STRING
+}, { sequelize, modelName: 'product' });
 
-    get key() { return this.#key; }
-    get name() { return this.#name; }
-    set name(newName) { this.#name = newName; }
-    get description() { return this.#description; }
-    set description(newDesc) { this.#description = newDesc; }
-    get price() { return this.#price; }
-    set price(newPrice) { this.#price = newPrice; }
-    get category() { return this.#category; }
-    set category(newCategory) { this.#category = newCategory; }
-};
+module.exports = Product;
