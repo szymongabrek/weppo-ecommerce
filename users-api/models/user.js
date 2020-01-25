@@ -1,11 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize({
-  dialect: 'sqlite',
-  storage: 'users.sqlite3',
-  define: {
-      timestamps: false
-  },
-});
+const sequelize = require('../database/config');
 const Model = Sequelize.Model;
 
 class User extends Model {}
