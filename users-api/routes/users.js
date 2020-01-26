@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
+const authLocal = require('../services/auth').authLocal;
 
 function sendError(res, err, backupCode) {
   res.status(err.status || backupCode).json({
@@ -56,6 +57,11 @@ router.delete('/:pk', async (req, res, next) => {
   } catch(err) {
     sendError(res, err, 500);
   }
+});
+
+router.post('/login', authLocal, (req, res, next) => {
+  res.status(200).json(req.user);
+  return next();
 });
 
 module.exports = router;
