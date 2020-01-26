@@ -56,10 +56,6 @@ function verifyPassword(password, hash) {
     });
 }
 
-// function _hashPassword(password) {
-//     return bcrypt.hashSync(password);
-// }
-
 User.sync();
 
 module.exports = User;
