@@ -14,7 +14,7 @@ class User extends Model {
         }
     }
 
-    async verifyPassword(password) {
+    verifyPassword(password) {
         try {
             return verifyPassword(password, this.password);
         }
@@ -47,7 +47,6 @@ function encryptPassword(password) {
 }
 
 function verifyPassword(password, hash) {
-    console.log('password:', password, 'hash:', hash);
     return new Promise( (resolve, reject) => {
         bcrypt.compare(password, hash, (err, result) => {
             if (err) return reject(err);

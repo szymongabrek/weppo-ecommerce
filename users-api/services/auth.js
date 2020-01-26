@@ -7,17 +7,12 @@ passport.use(new LocalStrategy(
     User.findOne(
       { where: { username: username }}
     ).then(user => {
-      if (!user) { return done(null, false); }
+      if (!user) return done(null, false);
       user.verifyPassword(password)
       .then( result => {
         if (!result) return done(null, false);
         return done(null, user);
       })
-      // if (!user.verifyPassword(password)) { 
-      //   console.log('????');
-      //   return done(null, false); 
-      // }
-      // return done(null, user);
     }).catch(err => {
       return done(err);
     });
