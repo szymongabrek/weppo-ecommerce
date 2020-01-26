@@ -8,7 +8,11 @@ passport.use(new LocalStrategy(
       { where: { username: username }}
     ).then(user => {
       if (!user) { return done(null, false); }
-      if (!user.verifyPassword(password)) { return done(null, false); }
+      const verificationResult = await user.verifyPassword(password);
+      if (!verificationResult) { 
+        console.log('????');
+        return done(null, false); 
+      }
       return done(null, user);
     }).catch(err => {
       return done(err);

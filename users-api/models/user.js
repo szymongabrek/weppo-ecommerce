@@ -16,8 +16,7 @@ class User extends Model {
 
     async verifyPassword(password) {
         try {
-            console.log('username:', this.username)
-            return await verifyPassword(password, this.password);
+            return verifyPassword(password, this.password);
         }
         catch (err) {
             console.error(err);
@@ -30,8 +29,8 @@ User.init({
     role: Sequelize.TEXT
 }, { sequelize, modelName: 'user' });
 
-User.beforeCreate( (user, options) => {
-    user.encryptPassword();
+User.beforeSave( async (user, options) => {
+    await user.encryptPassword();
 });
 
 function encryptPassword(password) {
@@ -56,6 +55,10 @@ function verifyPassword(password, hash) {
         });
     });
 }
+
+// function _hashPassword(password) {
+//     return bcrypt.hashSync(password);
+// }
 
 User.sync();
 
