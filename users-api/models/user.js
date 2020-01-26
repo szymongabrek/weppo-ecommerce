@@ -3,28 +3,34 @@ const sequelize = require('../database/config');
 const Model = Sequelize.Model;
 const bcrypt = require('bcrypt-nodejs');
 
-class User extends Model {}
+class User extends Model {
+    async encryptPassword() {
+        try {
+            const success = await encryptPassword(this.password);
+            this.password = success;
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+
+    async authenticatePassword(password) {
+        try {
+            return await authenticatePassword(password, this.password);
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+}
 User.init({
     username: Sequelize.TEXT,
     password: Sequelize.TEXT,
     role: Sequelize.TEXT
 }, { sequelize, modelName: 'user' });
 
-// User.beforeCreate( (user, options) => {
-//     return encryptPassword(user.password)
-//     .then (success => {
-//         user.password = success;
-//     })
-// });
-
 User.beforeSave( (user, options) => {
-    return encryptPassword(user.password)
-    .then(success => {
-        user.password = success
-    })
-    .catch(err => {
-        console.error(err);
-    });
+    user.encryptPassword();
 });
 
 function encryptPassword(password) {
@@ -35,9 +41,18 @@ function encryptPassword(password) {
             bcrypt.hash(password, salt, null, (err, hash) => {
                 if (err) return reject(err);
                 return resolve(hash);
-            })
-        })
-    })
+            });
+        });
+    });
+}
+
+function authenticatePassword(password, hash) {
+    return new Promise( (resolve, reject) => {
+        bcrypt.compare(password, hash, (err, result) => {
+            if (err) return reject(err);
+            return resolve(result);
+        });
+    });
 }
 
 User.sync();
