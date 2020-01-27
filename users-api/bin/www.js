@@ -7,6 +7,7 @@
 const app = require('../app');
 const debug = require('debug')('users-api:server');
 const http = require('http');
+const User = require('../models/user');
 
 /**
  * Get port from environment and store in Express.
@@ -20,6 +21,11 @@ app.set('port', port);
  */
 
 const server = http.createServer(app);
+
+/**
+ * Sync models
+ */
+User.sync();
 
 /**
  * Listen on provided port, on all network interfaces.

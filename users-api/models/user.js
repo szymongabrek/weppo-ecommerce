@@ -33,6 +33,4 @@ User.beforeSave( async (user, options) => {
     await user.encryptPassword();
 });
 
-User.sync();
-
 module.exports = User;
