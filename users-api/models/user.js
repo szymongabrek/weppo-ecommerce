@@ -1,12 +1,12 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../database/config');
 const Model = Sequelize.Model;
-const bcrypt = require('bcrypt-nodejs');
+const passwordUtils = require('../helpers/password');
 
 class User extends Model {
     async encryptPassword() {
         try {
-            const success = await encryptPassword(this.password);
+            const success = await passwordUtils.encryptPassword(this.password);
             this.password = success;
         }
         catch (err) {
@@ -16,7 +16,7 @@ class User extends Model {
 
     verifyPassword(password) {
         try {
-            return verifyPassword(password, this.password);
+            return passwordUtils.verifyPassword(password, this.password);
         }
         catch (err) {
             console.error(err);
@@ -32,28 +32,6 @@ User.init({
 User.beforeSave( async (user, options) => {
     await user.encryptPassword();
 });
-
-function encryptPassword(password) {
-    const saltRounds = 10;
-    return new Promise( (resolve, reject) => {
-        bcrypt.genSalt(saltRounds, (err, salt) => {
-            if (err) return reject(err);
-            bcrypt.hash(password, salt, null, (err, hash) => {
-                if (err) return reject(err);
-                return resolve(hash);
-            });
-        });
-    });
-}
-
-function verifyPassword(password, hash) {
-    return new Promise( (resolve, reject) => {
-        bcrypt.compare(password, hash, (err, result) => {
-            if (err) return reject(err);
-            return resolve(result);
-        });
-    });
-}
 
 User.sync();
 
