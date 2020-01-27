@@ -4,7 +4,6 @@ const Model = Sequelize.Model;
 
 class Product extends Model {}
 Product.init({
-    // key: Sequelize.UUID,
     name: Sequelize.STRING,
     description: Sequelize.STRING,
     price: Sequelize.NUMBER,
