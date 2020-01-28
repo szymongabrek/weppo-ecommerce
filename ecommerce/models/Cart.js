@@ -2,7 +2,7 @@ export class Cart {
     lines = new Map();
     constructor(initialLines) {
         if (initialLines) {
-            initialLines.forEach(ol => this.lines.set(ol.product.id, ol));
+            initialLines.forEach(cl => this.lines.set(cl.product.id, cl));
         }
     }
     addProduct(prod, quantity) {
@@ -13,20 +13,20 @@ export class Cart {
                 this.lines.get(prod.id).quantity += quantity;
             }
         } else {
-            this.lines.set(prod.id, new OrderLine(prod, quantity));
+            this.lines.set(prod.id, new CartLine(prod, quantity));
         }
     }
     removeProduct(id) {
         this.lines.delete(id);
     }
-    get orderLines() {
+    get cartLines() {
         return [...this.lines.values()];
     }
     get productCount() {
         return [...this.lines.values()]
-            .reduce((total, ol) => total += ol.quantity, 0);
+            .reduce((total, cl) => total += cl.quantity, 0);
     }
     get total() {
-        return [...this.lines.values()].reduce((total, ol) => total += ol.total, 0);
+        return [...this.lines.values()].reduce((total, cl) => total += cl.total, 0);
     }
 }
