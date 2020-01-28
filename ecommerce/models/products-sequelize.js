@@ -61,3 +61,21 @@ module.exports.destroy = async function destroy(key) {
   const product = await SQProduct.find({ where: { productkey: key } }) 
   return product.destroy(); 
 }
+
+module.exports.keylist = async function keylist() { 
+  const SQProduct = await connectDB();
+  const products = await SQProduct.findAll({ attributes: [ 'productkey' ] });
+  return products.map(product => product.productkey); 
+}
+
+module.exports.count = async function count() { 
+  const SQProduct = await connectDB();
+  const count = await SQProduct.count();
+  return count; 
+}
+
+module.exports.close = async function close() {
+  if (sequlz) sequlz.close();
+  sequlz = undefined;
+  SQNote = undefined;
+}
