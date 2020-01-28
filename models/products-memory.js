@@ -1,7 +1,5 @@
 const Product = require('./Product');
-const {
-    connectDB
-} = require('./products-sqlite3')
+const { connectDB } = require('./products-sqlite3')
 
 const products = [];
 
