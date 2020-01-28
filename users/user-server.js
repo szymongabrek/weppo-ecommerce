@@ -21,7 +21,7 @@ server.use(restify.plugins.bodyParser({
 // Create a user record
 server.post('/create-user', async (req, res, next) => {
     try {
-        var result = await usersModel.create(
+        const result = await usersModel.create(
                  req.params.username, req.params.password, 
         req.params.provider,
                  req.params.familyName, req.params.givenName, 
@@ -35,7 +35,7 @@ server.post('/create-user', async (req, res, next) => {
 // Update an existing user record
 server.post('/update-user/:username', async (req, res, next) => {
     try {
-        var result = await usersModel.update(
+        const result = await usersModel.update(
               req.params.username, req.params.password, 
         req.params.provider,
               req.params.familyName, req.params.givenName,  
@@ -50,7 +50,7 @@ server.post('/update-user/:username', async (req, res, next) => {
 server.post('/find-or-create', async (req, res, next) => {
     log('find-or-create '+ util.inspect(req.params));
     try {
-        var result = await usersModel.findOrCreate({
+        const result = await usersModel.findOrCreate({
             id: req.params.username, username: req.params.username,
             password: req.params.password, provider:  
             req.params.provider,
