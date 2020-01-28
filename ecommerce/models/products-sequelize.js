@@ -34,3 +34,12 @@ module.exports.create =  async function create({key, name, description, price, c
     await SQProduct.create({ productkey: key, name, description, price, category });
     return product;
 }
+
+module.exports.update = async function update({key, name, description, price, category}) { 
+  const SQProduct = await connectDB();
+  const product = await SQProduct.find({ where: { productkey: key } }) 
+  if (!product) { throw new Error(`No product found for ${key}`); } else { 
+      await product.updateAttributes({ name, description, price, category });
+      return new Product({key, name, description, price, category});
+  } 
+}
