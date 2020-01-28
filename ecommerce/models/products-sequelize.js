@@ -55,3 +55,9 @@ module.exports.read = async function read(key) {
                           category: product.category}); 
   } 
 }
+
+module.exports.destroy = async function destroy(key) { 
+  const SQProduct = await connectDB();
+  const product = await SQProduct.find({ where: { productkey: key } }) 
+  return product.destroy(); 
+}
