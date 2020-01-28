@@ -77,5 +77,5 @@ module.exports.count = async function count() {
 module.exports.close = async function close() {
   if (sequlz) sequlz.close();
   sequlz = undefined;
-  SQNote = undefined;
+  SQProduct = undefined;
 }

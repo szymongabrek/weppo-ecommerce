@@ -3,6 +3,6 @@ module.exports = class CartLine {
         // no statements required
     }
     get total() {
-        return this.product.price * this.quantity;
+        return this.product.price() * this.quantity;
     }
 }
