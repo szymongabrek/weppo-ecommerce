@@ -1,4 +1,4 @@
-export class OCartrder {
+export class Cart {
     lines = new Map();
     constructor(initialLines) {
         if (initialLines) {
