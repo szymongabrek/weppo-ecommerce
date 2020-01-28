@@ -1,0 +1,6 @@
+dbname: ecommerce 
+username: 
+password: 
+params: 
+    dialect: sqlite 
+    storage: db.sqlite3 
