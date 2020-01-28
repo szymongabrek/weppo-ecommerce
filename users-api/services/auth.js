@@ -3,19 +3,16 @@ const LocalStrategy = require('passport-local');
 const User = require('../models/user');
 
 passport.use(new LocalStrategy(
-  (username, password, done) => {
-    User.findOne(
-      { where: { username: username }}
-    ).then(user => {
+  async (username, password, done) => {
+    try {
+      let user = await User.findOne({ where: {username}});
       if (!user) return done(null, false);
-      user.verifyPassword(password)
-      .then( result => {
-        if (!result) return done(null, false);
-        return done(null, user);
-      })
-    }).catch(err => {
-      return done(err);
-    });
+      let verified = await user.verifyPassword(password);
+      if (!verified) return done(null, false);
+      return done(null, user);
+    } catch(err) {
+      return done(null, false);
+    }
   }
 ));
 

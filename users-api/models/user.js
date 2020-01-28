@@ -1,12 +1,12 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../database/config');
 const Model = Sequelize.Model;
-const passwordUtils = require('../helpers/password');
+const { encryptPassword, verifyPassword } = require('../helpers/password');
 
 class User extends Model {
     async encryptPassword() {
         try {
-            const success = await passwordUtils.encryptPassword(this.password);
+            const success = await encryptPassword(this.password);
             this.password = success;
         }
         catch (err) {
@@ -14,9 +14,9 @@ class User extends Model {
         }
     }
 
-    verifyPassword(password) {
+    async verifyPassword(password) {
         try {
-            return passwordUtils.verifyPassword(password, this.password);
+            return await verifyPassword(password, this.password);
         }
         catch (err) {
             console.error(err);
