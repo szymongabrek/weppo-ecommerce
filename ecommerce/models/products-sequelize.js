@@ -28,9 +28,9 @@ async function connectDB() {
   return SQProduct.sync();
 }
 
-module.exports.create =  async function create(key, title, body) { 
-    const SQNote = await connectDB();
-    const product = new Product(key, title, body); 
-    await SQNote.create({ notekey: key, title: title, body: body });
-    return note;
+module.exports.create =  async function create({key, name, description, price, category}) { 
+    const SQProduct = await connectDB();
+    const product = new Product({key, name, description, price, category}); 
+    await SQProduct.create({ productkey: key, name, description, price, category });
+    return product;
 }
