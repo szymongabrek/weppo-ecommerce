@@ -43,3 +43,15 @@ module.exports.update = async function update({key, name, description, price, ca
       return new Product({key, name, description, price, category});
   } 
 }
+
+module.exports.read = async function read(key) { 
+  const SQProduct = await connectDB();
+  const product = await SQProduct.find({ where: { productkey: key } }) 
+  if (!product) { throw new Error(`No product found for ${key}`); } else { 
+      return new Product({key : product.productkey, 
+                          name : product.name, 
+                          description: product.description,
+                          price: product.price,
+                          category: product.category}); 
+  } 
+}
