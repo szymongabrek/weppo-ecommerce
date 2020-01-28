@@ -1,12 +1,11 @@
 const Sequelize = require("sequelize");
 const jsyaml = require('js-yaml');
 const fs = require('fs-extra');
-const util=  require('util');
 const log =  require('debug')('users:model-users');
 const error = require('debug')('users:error'); 
 
-var SQUser;
-var sequlz;
+let SQUser;
+let sequlz;
 
 async function connectDB() {
     

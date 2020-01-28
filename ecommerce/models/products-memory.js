@@ -1,9 +1,9 @@
 const Product = require('./Product');
 const { connectDB } = require('./products-sqlite3')
 
-module.exports.create = async function create(key, name, description, price, category) {
+module.exports.create = async function create({key, name, description, price, category}) {
     const db = await connectDB();
-    const product = new Product(key, name, description, price, category);
+    const product = new Product({key, name, description, price, category});
     await new Promise((resolve, reject) => {
         db.run("INSERT INTO products ( id, name, description, price, category) " +
             "VALUES ( ?, ? , ?, ?, ? );", [key, name, description, price, category], err => {
@@ -14,9 +14,9 @@ module.exports.create = async function create(key, name, description, price, cat
     return product;
 }
 
-module.exports.update = async function update(key, name, description, price, category) {
+module.exports.update = async function update({key, name, description, price, category}) {
     const db = await connectDB();
-    const product = new Product(key, name, description, price, category);
+    const product = new Product({key, name, description, price, category});
     await new Promise((resolve, reject) => {
         db.run(`UPDATE products
             SET name=?, description=?, price=?, category=?
@@ -33,10 +33,8 @@ module.exports.read = async function read(key) {
     const product = await new Promise((resolve, reject) => {
         db.get(`SELECT * FROM products WHERE id = ?;`, [key], (err, row) => {            
             if (err) return reject(err);
-            const product = new Product(row.id, row.name, row.description, row.price, row.category);
-            
-            console.log(key,row);
-                        
+            const product = new Product({key:row.id, name: row.name, description: row.description, price: row.price, category:row.category});
+                                    
             resolve(product);
               
         });

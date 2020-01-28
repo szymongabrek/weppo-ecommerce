@@ -4,7 +4,7 @@ module.exports = class Product {
     #description;
     #price;
     #category;
-    constructor(key, name, description, price, category) { 
+    constructor({key, name, description, price, category}) { 
         this.#key = key; 
         this.#name = name; 
         this.#description = description; 
