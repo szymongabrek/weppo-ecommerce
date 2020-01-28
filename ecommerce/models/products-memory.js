@@ -1,8 +1,6 @@
 const Product = require('./Product');
 const { connectDB } = require('./products-sqlite3')
 
-const products = [];
-
 module.exports.create = async function create(key, name, description, price, category) {
     const db = await connectDB();
     const product = new Product(key, name, description, price, category);
