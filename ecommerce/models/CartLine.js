@@ -1,8 +1,9 @@
 module.exports = class CartLine {
     constructor( product, quantity) {
-        // no statements required
+        this.product = product;
+        this.quantity = quantity;
     }
     get total() {
-        return this.product.price() * this.quantity;
+        return this.product.price * this.quantity;
     }
 }

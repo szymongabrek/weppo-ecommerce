@@ -1,4 +1,4 @@
-const products = require('./products-memory');
+const products = require('./products-sequelize');
 const faker = require('faker');
 module.exports = (num) => {
 

@@ -1,0 +1,37 @@
+<div class="container mr-3">
+    <ul class="list-group">
+    {{#each cartlines}}
+    <li class="list-group-item row">
+        <div class="row">
+            <div class="col-6 d-flex flex-column">
+                <strong>{{product.name}}</strong>
+                <p class="description">{{product.description}}</p>
+                <a class="btn btn-primary btn-sm w-25" href="/cart/remove/{{product.key}}">
+                    Remove
+                </a>
+            </div>
+            <div class="col-3 d-flex flex-column align-items-center">
+                <span>{{quantity}}</span>
+                <small class="text-muted">{{product.price}} zl / each</small>
+            </div>
+            <div class="col-3 d-flex justify-content-end pr-5">
+                <span class="lead">{{total}} zl</span>
+            </div>
+        </div> 
+    </li>
+    {{/each}}
+    </ul>
+
+    <div class="d-flex justify-content-between w-50 ml-auto mr-5 mt-5 cart-summary">
+        <span>Total:</span>
+        <span>{{total}} zl</span>
+    </div>
+
+    <hr>
+
+    <button class="btn btn-success btn-md float-right">Checkout</button>
+</div>
+
+<div class="btn-group pull-right m-1">
+    <...>
+</div>

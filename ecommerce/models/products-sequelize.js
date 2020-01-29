@@ -67,11 +67,7 @@ module.exports.update = async function update({
   category
 }) {
   const SQProduct = await connectDB();
-  const product = await SQProduct.find({
-    where: {
-      productkey: key
-    }
-  })
+  const product = await SQProduct.findByPk(key);
   if (!product) {
     throw new Error(`No product found for ${key}`);
   } else {
@@ -93,11 +89,7 @@ module.exports.update = async function update({
 
 module.exports.read = async function read(key) {
   const SQProduct = await connectDB();
-  const product = await SQProduct.find({
-    where: {
-      productkey: key
-    }
-  })
+  const product = await SQProduct.findByPk(key);
   if (!product) {
     throw new Error(`No product found for ${key}`);
   } else {
@@ -113,7 +105,7 @@ module.exports.read = async function read(key) {
 
 module.exports.destroy = async function destroy(key) {
   const SQProduct = await connectDB();
-  const product = await SQProduct.find({
+  const product = await SQProduct.findOne({
     where: {
       productkey: key
     }
