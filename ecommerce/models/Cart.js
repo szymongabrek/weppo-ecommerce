@@ -1,19 +1,21 @@
-export class Cart {
+const CartLine = require('./CartLine');
+
+module.exports = class Cart {
     lines = new Map();
     constructor(initialLines) {
         if (initialLines) {
-            initialLines.forEach(cl => this.lines.set(cl.product.key(), cl));
+            initialLines.forEach(cl => this.lines.set(cl.product.key, cl));
         }
     }
     addProduct(prod, quantity) {
-        if (this.lines.has(prod.key())) {
+        if (this.lines.has(prod.key)) {
             if (quantity === 0) {
-                this.removeProduct(prod.key());
+                this.removeProduct(prod.key);
             } else {
-                this.lines.get(prod.key()).quantity += quantity;
+                this.lines.get(prod.key).quantity += quantity;
             }
         } else {
-            this.lines.set(prod.id, new CartLine(prod, quantity));
+            this.lines.set(prod.key, new CartLine(prod, quantity));
         }
     }
     removeProduct(key) {
