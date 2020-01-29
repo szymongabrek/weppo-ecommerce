@@ -1,0 +1,22 @@
+{{#each cartlines}}
+<div class="card m-1 p-1 bg-light">
+    <div class="bg-faded p-1">
+        <h4>
+            [{{product.category}}]:{{product.name}}
+            <span class="badge badge-pill badge-primary float-right">
+                <small>{{total}} zł</small>
+            </span>
+        </h4>
+    </div>
+    <div class="card-text bg-white p-1">
+        {{product.description}}
+        <a class="btn btn-success btn-sm float-right" href="/cart/remove/{{product.key}}">
+            Remove From Cart
+        </a>
+    </div>
+</div>
+{{/each}}
+
+<div class="btn-group pull-right m-1">
+    <...>
+</div>
