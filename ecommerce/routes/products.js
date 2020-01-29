@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const products = require('../models/products-sequelize');
+const faker = require('faker');
 
 /* GET home page. */
 router.get('/', async (req, res, next) => {
@@ -22,16 +23,19 @@ router.get('/view', async (req, res, next) => {
   });
 });
 
-// temporary path for testing purposes
+// temporary path for testing purposes // fake-[...] doesnt quite work hence why I use this
 router.get('/create', async (req, res, next) => {
-  const product = await products.create({ 
-    key: '1',
-    name: 'thing',
-    description: 'desc',
-    price: 13.0,
-    category: 'cat'
-  });
-  res.send(product);
+  let xs = [];
+  for (let i = 0; i < 5; i++) {
+    const key = faker.random.number().toString();
+    const name = faker.commerce.productName();
+    const price = faker.commerce.price();
+    const description = faker.lorem.text();
+    const category = faker.commerce.product();
+    const product = await products.create({ key, name, price, description, category });
+    xs.push(product);
+  }
+  res.send(xs);
 });
 
 module.exports = router;

@@ -7,7 +7,6 @@ let cart = new Cart([]);
 
 router.get('/', (req, res) => {
     let lines = cart.cartLines;
-    console.log(cart.lines);
     res.send(lines);
 });
 
