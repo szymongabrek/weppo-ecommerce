@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
     for (const product of req.session.cart.lines) {
         cart.addProduct(product.product, product.quantity);
     }
-    res.render('cart/view', { title: 'Cart', cartlines: cart.cartLines });
+    res.render('cart/view', { title: 'Cart', cartlines: cart.cartLines, total: cart.total });
 });
 
 // Looks like cookies do not support Map, hence why the weird session.cart assignment
