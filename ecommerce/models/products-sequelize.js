@@ -1,77 +1,138 @@
-const fs = require('fs-extra');
-const util = require('util');
-const jsyaml = require('js-yaml');
+// const fs = require('fs-extra');
+// const util = require('util');
+// const jsyaml = require('js-yaml');
 const Product = require('./Product');
 const Sequelize = require('sequelize');
-const debug = require('debug')('products:products-sequelize'); 
-const error = require('debug')('products:error-sequelize'); 
+const debug = require('debug')('products:products-sequelize');
+const error = require('debug')('products:error-sequelize');
 
-let SQProduct; 
+let SQProduct;
 let sequlz;
 
-async function connectDB() { 
+async function connectDB() {
   if (typeof sequlz === 'undefined') {
-    const YAML = await fs.readFile(process.env.SEQUELIZE_CONNECT,'utf8');
-    const params = jsyaml.safeLoad(YAML, 'utf8'); 
-    sequlz = new Sequelize(params.dbname, params.username,
-                           params.password, params.params); 
+    // const YAML = await fs.readFile(process.env.SEQUELIZE_CONNECT,'utf8');
+    // const params = jsyaml.safeLoad(YAML, 'utf8'); 
+
+    sequlz = new Sequelize('ecommerce', '', '', {
+      dialect: 'sqlite',
+      storage: 'db.sqlite3'
+    });
   }
-  if (SQProduct) return SQProduct.sync(); 
-  SQProduct = sequlz.define('Product', { 
-        productkey: { type: Sequelize.STRING, primaryKey: true, unique: 
-        true }, 
-        name: Sequelize.STRING, 
-        description: Sequelize.TEXT ,
-        price: Sequelize.DECIMAL(20,2) ,
-        category: Sequelize.STRING
-  }); 
+  if (SQProduct) return SQProduct.sync();
+  SQProduct = sequlz.define('Product', {
+    productkey: {
+      type: Sequelize.STRING,
+      primaryKey: true,
+      unique: true
+    },
+    name: Sequelize.STRING,
+    description: Sequelize.TEXT,
+    price: Sequelize.DECIMAL(20, 2),
+    category: Sequelize.STRING
+  });
   return SQProduct.sync();
 }
 
-module.exports.create =  async function create({key, name, description, price, category}) { 
-    const SQProduct = await connectDB();
-    const product = new Product({key, name, description, price, category}); 
-    await SQProduct.create({ productkey: key, name, description, price, category });
-    return product;
-}
-
-module.exports.update = async function update({key, name, description, price, category}) { 
+module.exports.create = async function create({
+  key,
+  name,
+  description,
+  price,
+  category
+}) {
   const SQProduct = await connectDB();
-  const product = await SQProduct.find({ where: { productkey: key } }) 
-  if (!product) { throw new Error(`No product found for ${key}`); } else { 
-      await product.updateAttributes({ name, description, price, category });
-      return new Product({key, name, description, price, category});
-  } 
+  const product = new Product({
+    key,
+    name,
+    description,
+    price,
+    category
+  });
+  await SQProduct.create({
+    productkey: key,
+    name,
+    description,
+    price,
+    category
+  });
+  return product;
 }
 
-module.exports.read = async function read(key) { 
+module.exports.update = async function update({
+  key,
+  name,
+  description,
+  price,
+  category
+}) {
   const SQProduct = await connectDB();
-  const product = await SQProduct.find({ where: { productkey: key } }) 
-  if (!product) { throw new Error(`No product found for ${key}`); } else { 
-      return new Product({key : product.productkey, 
-                          name : product.name, 
-                          description: product.description,
-                          price: product.price,
-                          category: product.category}); 
-  } 
+  const product = await SQProduct.find({
+    where: {
+      productkey: key
+    }
+  })
+  if (!product) {
+    throw new Error(`No product found for ${key}`);
+  } else {
+    await product.updateAttributes({
+      name,
+      description,
+      price,
+      category
+    });
+    return new Product({
+      key,
+      name,
+      description,
+      price,
+      category
+    });
+  }
 }
 
-module.exports.destroy = async function destroy(key) { 
+module.exports.read = async function read(key) {
   const SQProduct = await connectDB();
-  const product = await SQProduct.find({ where: { productkey: key } }) 
-  return product.destroy(); 
+  const product = await SQProduct.find({
+    where: {
+      productkey: key
+    }
+  })
+  if (!product) {
+    throw new Error(`No product found for ${key}`);
+  } else {
+    return new Product({
+      key: product.productkey,
+      name: product.name,
+      description: product.description,
+      price: product.price,
+      category: product.category
+    });
+  }
 }
 
-module.exports.keylist = async function keylist() { 
+module.exports.destroy = async function destroy(key) {
   const SQProduct = await connectDB();
-  const products = await SQProduct.findAll({ attributes: [ 'productkey' ] });
-  return products.map(product => product.productkey); 
+  const product = await SQProduct.find({
+    where: {
+      productkey: key
+    }
+  })
+  return product.destroy();
 }
 
-module.exports.count = async function count() { 
+module.exports.keylist = async function keylist() {
+  const SQProduct = await connectDB();
+  const products = await SQProduct.findAll({
+    attributes: ['productkey']
+  });
+  return products.map(product => product.productkey);
+}
+
+module.exports.count = async function count() {
   const SQProduct = await connectDB();
   const count = await SQProduct.count();
-  return count; 
+  return count;
 }
 
 module.exports.close = async function close() {

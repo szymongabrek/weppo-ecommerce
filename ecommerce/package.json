@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "DEBUG=ecommerce:* nodemon ./bin/www"
+    "start": "DEBUG=ecommerce:* PORT=3001 nodemon ./bin/www"
   },
   "dependencies": {
     "bootstrap": "^4.4.1",
@@ -11,6 +11,7 @@
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "faker": "^4.1.0",
+    "fs-extra": "^8.1.0",
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
     "js-yaml": "^3.13.1",
