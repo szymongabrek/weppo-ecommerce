@@ -6,13 +6,14 @@ function createUniqueID() {
 }
 
 exports.cartAttach = (req, res, next) => {
-  if (!req.session.cartlines) {
+  if (!req.session.cart) {
     const cartlines = [];
     const userkey = createUniqueID();
     const newCart = new Cart(cartlines, userkey);
-    req.session.cart.lines = newCart.cartLines;
-    req.session.cart.userkey = newCart.userkey; 
+    req.session.cart = {
+      lines: newCart.cartLines,
+      userkey: newCart.userkey
+    }
   }
-  console.log(req.session.cart);
   next();
 }
