@@ -4,6 +4,6 @@ module.exports = class CartLine {
         this.quantity = quantity;
     }
     get total() {
-        return this.product.price() * this.quantity;
+        return this.product.price * this.quantity;
     }
 }

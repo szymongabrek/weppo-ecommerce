@@ -2,8 +2,8 @@ const CartLine = require('./CartLine');
 
 module.exports = class Cart {
     lines = new Map();
-    constructor(initialLines, key) {
-        this.key = key;
+    constructor(initialLines, userkey) {
+        this.userkey = userkey;
         if (initialLines) {
             initialLines.forEach(cl => this.lines.set(cl.product.key, cl));
         }
