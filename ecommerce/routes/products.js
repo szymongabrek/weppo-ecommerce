@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const products = require('../models/products-sequelize');
-// const products = require('../models/fake-products-factory')(10);
 
 /* GET home page. */
 router.get('/', async (req, res, next) => {
@@ -21,6 +20,18 @@ router.get('/view', async (req, res, next) => {
       name: product ? product.name : "",
       productkey: req.query.key, product: product
   });
+});
+
+// temporary path for testing purposes
+router.get('/create', async (req, res, next) => {
+  const product = await products.create({ 
+    key: '1',
+    name: 'thing',
+    description: 'desc',
+    price: 13.0,
+    category: 'cat'
+  });
+  res.send(product);
 });
 
 module.exports = router;
