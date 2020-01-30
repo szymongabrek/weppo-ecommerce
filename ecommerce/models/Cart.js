@@ -22,12 +22,19 @@ module.exports = class Cart {
     removeProduct(key) {
         this.lines.delete(key);
     }
+    changeQuantity(key, newQuantity) {
+        if (!this.lines.has(key)){
+            throw Error(`No product of key ${key} found in cartlines`);
+        } else {
+            this.lines.get(key).quantity = newQuantity;
+        }
+    }
     get cartLines() {
         return [...this.lines.values()];
     }
     get productCount() {
         return [...this.lines.values()]
-            .reduce((total, cl) => total += cl.quantity(), 0);
+            .reduce((total, cl) => total += cl.quantity, 0);
     }
     get total() {
         return [...this.lines.values()].reduce((total, cl) => total += cl.total, 0);

@@ -6,6 +6,7 @@ const cookieSession = require('cookie-session');
 const logger = require('morgan');
 const hbs = require('hbs');
 const { cartAttach } = require('./helpers/cookie-cart');
+const bodyParser = require('body-parser');
 
 
 const indexRouter = require('./routes/index');
@@ -34,6 +35,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules','bootstrap','dist')));
 app.use(cartAttach);
+app.use(bodyParser.urlencoded({extended: true}));
 
 
 app.use('/', indexRouter);
