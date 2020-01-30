@@ -5,41 +5,43 @@
         <div class="col-md-12">
             <div class="cart-view-area">
             <div class="cart-view-table">
-                <form action="">
+                <form action="/cart/update" method="POST">
                 <div class="table-responsive">
-                    <table class="table">
-                    <thead>
-                        <tr>
-                        <th></th>
-                        <th></th>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{#each cart.lines}}
-                        <tr>
-                            <td><a class="remove" href="/cart/remove/{{product.key}}"><i class="fas fa-times"></i></a></td>
-                            <td><a href="#"><img src="img/man/polo-shirt-1.png" alt="img"></a></td>
-                            <td><a class="aa-cart-title" href="/products/{{product.key}}">{{product.name}}</a></td>
-                            <td>{{product.price}} zł</td>
-                            <td><input class="aa-cart-quantity" type="number" value="{{quantity}}"></td>
-                            <td>{{total}} zł</td>
-                        </tr>
-                        {{/each}}
-                        <tr>
-                            <td colspan="6" class="aa-cart-view-bottom">
-                            <div class="aa-cart-coupon">
-                                <input class="aa-coupon-code" type="text" placeholder="Coupon">
-                                <input class="aa-cart-view-btn" type="submit" value="Apply Coupon">
-                            </div>
-                            <input class="aa-cart-view-btn" type="submit" value="Update Cart">
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                        <table class="table">
+                        <thead>
+                            <tr>
+                            <th></th>
+                            <th></th>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each cart.lines}}
+                            <tr>
+                                <td><a class="remove" href="/cart/remove/{{product.key}}"><i class="fas fa-times"></i></a></td>
+                                <td><a href="#"><img src="img/man/polo-shirt-1.png" alt="img"></a></td>
+                                <td><a class="aa-cart-title" href="/products/{{product.key}}">{{product.name}}</a></td>
+                                <td>{{product.price}} zł</td>
+                                <!-- quantities[key] doesnt quite work -- result will be literal 'quantities[123...]'
+                                instead of quatities { '123' -> 1, '231' -> 7, and so on.. } -->
+                                <td><input class="aa-cart-quantity" type="number" min="1" value="{{quantity}}" name="quantities[{{product.key}}]"></td>
+                                <td>{{total}} zł</td>
+                            </tr>
+                            {{/each}}
+                            <tr>
+                                <td colspan="6" class="aa-cart-view-bottom">
+                                <div class="aa-cart-coupon">
+                                    <input class="aa-coupon-code" type="text" placeholder="Coupon">
+                                    <input class="aa-cart-view-btn" type="submit" value="Apply Coupon">
+                                </div>
+                                <button class="aa-cart-view-btn" type="submit">Update Cart</button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                 </div>
                 </form>
                 <!-- Cart Total view -->

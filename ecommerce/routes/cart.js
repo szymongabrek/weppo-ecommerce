@@ -30,6 +30,23 @@ router.get('/remove/:id', async (req, res) => {
     cart.removeProduct(req.params.id);
     req.session.cart = cartUtils.createCookieCartFromCart(cart);
     res.redirect('/cart');
-})
+});
+
+/**
+ * Can't quite find a way to post maps in form...
+ * <input name="quantities[{{key}}]"> yields literal 'quantities[123..]: 1'
+ * instead of quantities { '123': 1 }, hence this retarded code.
+ * If you find a correct solution, let me know.
+ */
+router.post('/update', async (req, res) => {
+    const cart = cartUtils.createCartFromJSON(req.session.cart);
+    for (const line of cart.cartLines) {
+        const key = line.product.key;
+        const quantity = Number(req.body[`quantities[${key}]`]);
+        cart.changeQuantity(key, quantity);
+    }
+    req.session.cart = cartUtils.createCookieCartFromCart(cart);
+    res.redirect('/cart');
+});
 
 module.exports = router;

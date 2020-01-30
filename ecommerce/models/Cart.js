@@ -22,6 +22,13 @@ module.exports = class Cart {
     removeProduct(key) {
         this.lines.delete(key);
     }
+    changeQuantity(key, newQuantity) {
+        if (!this.lines.has(key)){
+            throw Error(`No product of key ${key} found in cartlines`);
+        } else {
+            this.lines.get(key).quantity = newQuantity;
+        }
+    }
     get cartLines() {
         return [...this.lines.values()];
     }
