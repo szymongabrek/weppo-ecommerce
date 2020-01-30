@@ -82,6 +82,10 @@ img {
   border: none;
 }
 
+.navbar-text {
+  padding: 0;
+}
+
 .aa-primary-btn {
   font-size: 16px;
   padding: 10px 30px;

@@ -9,21 +9,48 @@
 </head>
 
 <body>
-  <div className="container-fluid">
-    <div class="row">
-      <div class="col bg-dark text-white">
-        <div class="navbar-brand p-3">SIMPLE STORE</div>
-      </div>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <a class="navbar-brand p-3">SIMPLE STORE</a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li>
+                    <!-- cart box -->
+                    <div class="nav-item d-flex align-items-center">
+                        <div>
+                            <a class="btn btn-sm btn-secondary navbar-btn" href="/cart">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
+                        </div>
+                        <div class="d-flex flex-column ml-3">
+                        {{# if cart.lines.length }}
+                            <small class="navbar-text">
+                                <b>Your cart:</b>
+                            </small>
+                            <small class="navbar-text">
+                                {{cart.totalQuantity}} item(s)
+                                {{cart.totalValue}} zł
+                            </small>
+                        {{/if}}
+                        </div>
+                        
+                    </div>
+                    <!-- / cart box -->
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div className="container-fluid"></div>
+        <div class="row p-1">
+            <div class="col-3">
+                tu będą kiedyś kategorie
+            </div>
+            <div class="col-9 p-2">
+                {{{body}}}
+            </div>
+        </div>
     </div>
-    <div class="row p-1">
-      <div class="col-3">
-        tu będą kiedyś kategorie
-      </div>
-      <div class="col-9 p-2">
-        {{{body}}}
-      </div>
-    </div>
-  </div>
 
 
 <script src="/js/cart.js"></script>
