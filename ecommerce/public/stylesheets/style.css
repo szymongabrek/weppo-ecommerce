@@ -3554,6 +3554,7 @@ img {
 
   #aa-product-category .aa-product-catg-content .aa-product-catg-body .list li figure .aa-product-descrip {
     padding-right: 20px;
+    overflow-x: hidden;
   }
 
   #aa-product-category .aa-product-catg-content .aa-product-catg-body .list li figure .aa-product-img {
