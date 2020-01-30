@@ -1,12 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const Cart = require('../models/Cart');
 const products = require('../models/products-sequelize');
 const cartUtils = require('../helpers/cookie-cart');
 
 router.get('/', (req, res) => {
     const cart = cartUtils.createCartFromJSON(req.session.cart);
-    res.render('cart/view', { title: 'Cart', cartlines: cart.cartLines, total: cart.total });
+    res.render('cart/view', { 
+        title: 'Cart', 
+        cart: {
+            lines: cart.cartLines,
+            totalQuantity: cart.productCount,
+            totalValue: cart.total
+        }
+    });
 });
 
 // Looks like cookies do not support Map, hence why the weird session.cart assignment

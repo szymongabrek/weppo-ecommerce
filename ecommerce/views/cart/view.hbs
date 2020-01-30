@@ -19,7 +19,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{#each cartlines}}
+                        {{#each cart.lines}}
                         <tr>
                             <td><a class="remove" href="/cart/remove/{{product.key}}"><i class="fas fa-times"></i></a></td>
                             <td><a href="#"><img src="img/man/polo-shirt-1.png" alt="img"></a></td>
@@ -49,11 +49,11 @@
                     <tbody>
                     <tr>
                         <th>Total</th>
-                        <td>{{total}} zł</td>
+                        <td>{{cart.totalValue}} zł</td>
                     </tr>
                     </tbody>
                 </table>
-                <a href="#" class="aa-cart-view-btn">Proced to Checkout</a>
+                <a href="#" class="aa-cart-view-btn">Proceed to Checkout</a>
                 </div>
             </div>
             </div>
