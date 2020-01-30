@@ -27,7 +27,7 @@ module.exports = class Cart {
     }
     get productCount() {
         return [...this.lines.values()]
-            .reduce((total, cl) => total += cl.quantity(), 0);
+            .reduce((total, cl) => total += cl.quantity, 0);
     }
     get total() {
         return [...this.lines.values()].reduce((total, cl) => total += cl.total, 0);

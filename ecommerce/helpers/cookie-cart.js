@@ -17,3 +17,19 @@ exports.cartAttach = (req, res, next) => {
   }
   next();
 }
+
+exports.createCartFromJSON = (jsonCart) => {
+  const userkey = jsonCart.userkey;
+  const cart = new Cart([], userkey);
+  for (const product of jsonCart.lines) {
+      cart.addProduct(product.product, product.quantity);
+  }
+  return cart;
+}
+
+exports.createCookieCartFromCart = (cart) => {
+  return {
+    lines: cart.cartLines,
+    userkey: cart.userkey
+  }
+}

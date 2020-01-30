@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const products = require('../models/products-sequelize');
 const faker = require('faker');
+const cartUtils = require('../helpers/cookie-cart');
 
 /* GET home page. */
 router.get('/', async (req, res, next) => {
@@ -11,8 +12,17 @@ router.get('/', async (req, res, next) => {
     return products.read(key)
   });
   let productlist = await Promise.all(keyPromises);
+
+  const cart = cartUtils.createCartFromJSON(req.session.cart);
   
-  res.render('product/list', { title: 'Products', productlist: productlist });
+  res.render('product/list', { 
+    title: 'Products', 
+    productlist: productlist,
+    cart: {
+      lines: cart.cartLines,
+      totalQuantity: cart.productCount,
+      totalValue: cart.total
+    }});
 });
 
 router.get('/view', async (req, res, next) => {

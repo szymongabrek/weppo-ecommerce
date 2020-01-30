@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const maxLength = 120;
+  const maxLength = 150;
 
-  const descriptions = document.querySelectorAll('.description');
+  const descriptions = document.querySelectorAll('.aa-product-descrip');
   for (const description of descriptions) {
     description.innerHTML = description.innerHTML.substring(0, maxLength);
     if (description.innerHTML.length == maxLength) {
