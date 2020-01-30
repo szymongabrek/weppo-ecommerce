@@ -1,36 +1,67 @@
-<div class="container mr-3">
-    <ul class="list-group">
-    {{#each cartlines}}
-    <li class="list-group-item row">
+<!-- Cart view section -->
+<section id="cart-view">
+    <div class="container">
         <div class="row">
-            <div class="col-6 d-flex flex-column">
-                <strong>{{product.name}}</strong>
-                <p class="description">{{product.description}}</p>
-                <a class="btn btn-primary btn-sm w-25" href="/cart/remove/{{product.key}}">
-                    Remove
-                </a>
+        <div class="col-md-12">
+            <div class="cart-view-area">
+            <div class="cart-view-table">
+                <form action="">
+                <div class="table-responsive">
+                    <table class="table">
+                    <thead>
+                        <tr>
+                        <th></th>
+                        <th></th>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each cartlines}}
+                        <tr>
+                            <td><a class="remove" href="/cart/remove/{{product.key}}"><i class="fas fa-times"></i></a></td>
+                            <td><a href="#"><img src="img/man/polo-shirt-1.png" alt="img"></a></td>
+                            <td><a class="aa-cart-title" href="/products/{{product.key}}">{{product.name}}</a></td>
+                            <td>{{product.price}} zł</td>
+                            <td><input class="aa-cart-quantity" type="number" value="{{quantity}}"></td>
+                            <td>{{total}} zł</td>
+                        </tr>
+                        {{/each}}
+                        <tr>
+                            <td colspan="6" class="aa-cart-view-bottom">
+                            <div class="aa-cart-coupon">
+                                <input class="aa-coupon-code" type="text" placeholder="Coupon">
+                                <input class="aa-cart-view-btn" type="submit" value="Apply Coupon">
+                            </div>
+                            <input class="aa-cart-view-btn" type="submit" value="Update Cart">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                </form>
+                <!-- Cart Total view -->
+                <div class="cart-view-total">
+                <h4>Cart Totals</h4>
+                <table class="aa-totals-table">
+                    <tbody>
+                    <tr>
+                        <th>Total</th>
+                        <td>{{total}} zł</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <a href="#" class="aa-cart-view-btn">Proced to Checkout</a>
+                </div>
             </div>
-            <div class="col-3 d-flex flex-column align-items-center">
-                <span>{{quantity}}</span>
-                <small class="text-muted">{{product.price}} zl / each</small>
             </div>
-            <div class="col-3 d-flex justify-content-end pr-5">
-                <span class="lead">{{total}} zl</span>
-            </div>
-        </div> 
-    </li>
-    {{/each}}
-    </ul>
-
-    <div class="d-flex justify-content-between w-50 ml-auto mr-5 mt-5 cart-summary">
-        <span>Total:</span>
-        <span>{{total}} zl</span>
+        </div>
+        </div>
     </div>
-
-    <hr>
-
-    <button class="btn btn-success btn-md float-right">Checkout</button>
-</div>
+</section>
+<!-- / Cart view section -->
 
 <div class="btn-group pull-right m-1">
     <...>
