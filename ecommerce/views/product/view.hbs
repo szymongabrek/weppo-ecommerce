@@ -1,1 +1,51 @@
-{{!-- TODO: Create View For Product --}}
+<section id="aa-product-details">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-product-details-area">
+                    <div class="aa-product-details-content">
+                        <div class="row">
+                            <div class="col-md-5 col-sm-5 col-xs-12">                              
+                                <a class="aa-product-img" href="#">
+                                    <!-- temporary text description instead of image -->
+                                    <div>
+                                        <p class="aa-product-descrip">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate eveniet veritatis, eius hic ducimus vero magni facere itaque quos impedit, necessitatibus modi reprehenderit consequatur atque esse nobis facilis ea laboriosam.</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-7 col-sm-7 col-xs-12">
+                                <div class="aa-product-view-content">
+                                    <h3>{{product.name}}</h3>
+                                    <div class="aa-price-block">
+                                        <span class="aa-product-view-price">{{product.price}} zł</span>
+                                        <p class="aa-product-avilability">Avilability: <span>In stock</span></p>
+                                    </div>
+                                    <p>{{product.description}}</p> <!-- maybe shorter description here? -->
+                                    <p class="aa-prod-category">
+                                            Category: <a href="#">{{product.category}}</a>
+                                    </p>
+                                    <div class="aa-prod-view-bottom">
+                                        <a class="aa-add-to-cart-btn" href="/cart/add/{{product.key}}">Add To Cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="aa-product-details-bottom">
+                        <ul class="nav nav-tabs" id="myTab2">
+                            <li class="active">
+                                <h5>Description</h5>
+                            </li>              
+                        </ul>
+                        <div>
+                            <div class="" id="description">
+                                <p>{{product.description}}</p> <!-- maybe that long af description like in allegro/aliexpress here? -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+            
