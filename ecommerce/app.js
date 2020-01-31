@@ -21,6 +21,15 @@ module.exports.sessionCookieName = sessionCookieName;
 
 const app = express();
 
+app.use(session({ 
+  store: new FileStore({ path: "sessions" }), 
+  secret: 'keyboard mouse',
+  resave: true,
+  saveUninitialized: true,
+  name: sessionCookieName
+})); 
+initPassport(app);
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
