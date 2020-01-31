@@ -10,12 +10,10 @@ const client = restify.createJsonClient({
 
 client.basicAuth('owca', 'T4KI3-H4X3R5KIE-H4SL0');
 
-client.post('/create-user', {
-    username: "test2", password: "s3cret", provider: "local",
-    familyName: "Gabrek", givenName: "Szymon", middleName: "",
-    emails: [], photos: []
+client.post('/passwordCheck', {
+    username: "test", password: "s3cret"
 },
 (err, req, res, obj) => {
     if (err) console.error(err);
-    else console.log('Created '+ util.inspect(obj));
+    else console.log('Response '+ util.inspect(obj));
 });

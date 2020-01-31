@@ -17,18 +17,15 @@ router.get('/login', function(req, res, next) {
   } catch (e) { next(e); }
 }); 
  
-router.post('/login', 
-  passport.authenticate('local', { 
-    successRedirect: '/', // SUCCESS: Go to home page 
-    failureRedirect: 'login', // FAIL: Go to /user/login 
-  }) 
-);
+router.post('/login',
+  passport.authenticate('local', { successRedirect: '/',
+                                   failureRedirect: '/login' }));
 
 router.get('/logout', function(req, res, next) { 
   try {
     req.session = null
     req.logout(); 
- res.redirect('/'); 
+    res.redirect('/'); 
  } catch (e) { next(e); }
 });
 
