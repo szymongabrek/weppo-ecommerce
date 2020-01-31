@@ -30,7 +30,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/view/:key', async (req, res, next) => {
   const product = await products.read(req.params.key);
-  res.render('product/productview', {
+  res.render('product/view', {
       name: product ? product.name : "",
       productkey: req.params.key,
       user: req.user ? req.user : undefined, 
@@ -79,7 +79,7 @@ router.get('/edit/:key', ensureAuthenticated, async (req, res, next) => {
 router.get('/destroy/:key', ensureAuthenticated, async (req, res, next) => { 
   try {
       const note = await products.read(req.param.key);
-      res.render('productdestroy', {
+      res.render('product/destroy', {
           name: product ? `Delete ${product.name}` : "",
           productkey: req.params.key,
           user: req.user ? req.user : undefined, 
