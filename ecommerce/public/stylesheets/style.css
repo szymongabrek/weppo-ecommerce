@@ -2590,25 +2590,28 @@ img {
  MY ACCOUNT  PAGE
 ====================*/
 
-#aa-myaccount {
+#aa-myaccount, #aa-myproduct {
   display: inline;
   float: left;
   width: 100%;
 }
-#aa-myaccount .aa-myaccount-area {
+#aa-myaccount .aa-myaccount-area,
+#aa-myproduct .aa-myproduct-area {
   display: inline;
   float: left;
   padding: 100px 0;
   width: 100%;
 }
-#aa-myaccount .aa-myaccount-area h4 {
+#aa-myaccount .aa-myaccount-area h4,
+#aa-myproduct .aa-myproduct-area h4 {
   border-bottom: 1px solid #ccc;
   font-size: 25px;
   font-weight: bold;
   margin-bottom: 20px;
   padding-bottom: 15px;
 }
-#aa-myaccount .aa-myaccount-area .aa-myaccount-login {
+#aa-myaccount .aa-myaccount-area .aa-myaccount-login,
+#aa-myproduct .aa-myproduct-area .aa-myproduct-edit {
   display: inline;
   float: left;
   width: 100%;
@@ -2622,13 +2625,17 @@ img {
 /*---- Login form ----*/
 
 .aa-login-form input[type="text"],
-.aa-login-form input[type="password"] {
+.aa-login-form input[type="password"],
+.aa-login-form textarea {
   border: 1px solid #ccc;
   font-size: 16px;
   height: 40px;
   margin-bottom: 15px;
   padding: 10px;
   width: 100%;
+}
+.aa-login-form textarea {
+  height: 200px;
 }
 .aa-login-form label {
   font-weight: normal;
