@@ -11,13 +11,13 @@ TO-DO: create new 'myproduct' type of classes -->
                                 <h4>{{title}}</h4>
                                 <form action="" method="POST" class="aa-login-form">
                                     <label for="">Name<span>*</span></label>
-                                    <input type="text" placeholder="Name">
+                                    <input type="text" placeholder="Name" value="{{product.name}}">
                                     <label for="">Price (zł)<span>*</span></label>
-                                    <input type="text" placeholder="0.00">
+                                    <input type="text" placeholder="0.00" value="{{product.price}}">
                                     <label for="">Category<span>*</span></label>
-                                    <input type="text" placeholder="Category">
+                                    <input type="text" placeholder="Category" value="{{product.category}}">
                                     <label for="">Description</label>
-                                    <textarea name="" id=""></textarea>
+                                    <textarea name="" id="">{{product.description}}</textarea>
                                     <button type="submit" class="aa-browse-btn">Submit</button>
                                 </form>
                             </div>

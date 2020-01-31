@@ -53,8 +53,7 @@ router.get('/create', async (req, res, next) => {
   res.send(xs);
 });
 
-// router.get('/add', ensureAuthenticated, (req, res, next) => {
-router.get('/add', (req, res, next) => {
+router.get('/add', ensureAuthenticated, (req, res, next) => {
   try {
       res.render('product/edit', {
           title: "Add a Product",
@@ -67,7 +66,7 @@ router.get('/add', (req, res, next) => {
 router.get('/edit', ensureAuthenticated, async (req, res, next) => { 
   try {
       const product = await products.read(req.query.key);
-      res.render('productedit', {
+      res.render('product/edit', {
           title: product ? ("Edit " + product.name) : "Add Product",
           docreate: false,
           productkey: req.query.key,
