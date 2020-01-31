@@ -114,8 +114,8 @@ server.listen(process.env.PORT, "localhost", function() {
   // Mimic API Key authentication. 
    
   var apiKeys = [ { 
-      user: 'them', 
-      key: 'D4ED43C0-8BD6-4FE2-B358-7C0E230D11EF' 
+      user: 'owca', 
+      key: 'T4KI3-H4X3R5KIE-H4SL0' 
   } ]; 
    
   function check(req, res, next) { 
