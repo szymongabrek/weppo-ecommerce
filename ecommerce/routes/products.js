@@ -88,4 +88,8 @@ router.get('/destroy', ensureAuthenticated, (req, res, next) => {
   } catch (e) { next(e); }
 }); 
 
+router.post('/destroy/confirm', ensureAuthenticated, (req, res, next) => { 
+  // TODO: Delete confirmation route
+}); 
+
 module.exports = router;
