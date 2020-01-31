@@ -1,4 +1,4 @@
-import path from 'path';
+const path = require('path');
 const util = require('util');
 const express = require('express'); 
 const passport = require('passport'); 
