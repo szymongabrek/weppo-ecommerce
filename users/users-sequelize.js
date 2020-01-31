@@ -30,6 +30,7 @@ async function connectDB() {
         emails: Sequelize.STRING(2048),
         photos: Sequelize.STRING(2048)
     });
+    
     return SQUser.sync();
 }
 
