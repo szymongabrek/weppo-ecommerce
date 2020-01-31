@@ -63,4 +63,29 @@ router.get('/add', ensureAuthenticated, (req, res, next) => {
   } catch (e) { next(e); }
 });
 
+router.get('/edit', ensureAuthenticated, (req, res, next) => { 
+  try {
+      const product = await prodcts.read(req.query.key);
+      res.render('productedit', {
+          title: product ? ("Edit " + product.name) : "Add Product",
+          docreate: false,
+          productkey: req.query.key,
+          user: req.user ? req.user : undefined, 
+          product: product
+      });
+  } catch (e) { next(e); }
+}); 
+
+router.get('/destroy', ensureAuthenticated, (req, res, next) => { 
+  try {
+      const note = await products.read(req.query.key);
+      res.render('productdestroy', {
+          name: product ? `Delete ${product.name}` : "",
+          productkey: req.query.key,
+          user: req.user ? req.user : undefined, 
+          product: product
+      });
+  } catch (e) { next(e); }
+}); 
+
 module.exports = router;
