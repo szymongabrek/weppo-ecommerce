@@ -6,23 +6,25 @@ const cartUtils = require('../helpers/cookie-cart');
 
 /* GET home page. */
 router.get('/', async (req, res, next) => {
-  let keylist = await products.keylist();
-  
-  let keyPromises = keylist.map(key => {
-    return products.read(key)
-  });
-  let productlist = await Promise.all(keyPromises);
-
-  const cart = cartUtils.createCartFromJSON(req.session.cart);
-  
-  res.render('product/list', { 
-    title: 'Products', 
-    productlist: productlist,
-    cart: {
-      lines: cart.cartLines,
-      totalQuantity: cart.productCount,
-      totalValue: cart.total
-    }});
+  try {
+    let keylist = await products.keylist();
+    let keyPromises = keylist.map(key => {
+      return products.read(key)
+    });
+    let productlist = await Promise.all(keyPromises);
+    const cart = cartUtils.createCartFromJSON(req.session.cart);
+    
+    res.render('product/list', { 
+      title: 'Products', 
+      productlist: productlist,
+      cart: {
+        lines: cart.cartLines,
+        totalQuantity: cart.productCount,
+        totalValue: cart.total
+      },
+      user: req.user ? req.user : undefined
+    });
+  } catch (e) { next(e); }
 });
 
 router.get('/view', async (req, res, next) => {
