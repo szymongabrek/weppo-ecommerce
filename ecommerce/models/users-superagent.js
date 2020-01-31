@@ -53,3 +53,12 @@ module.exports.update = async function update(username, password,
         .auth('owca', 'T4KI3-H4X3R5KIE-H4SL0');
     return res.body;
 }
+
+module.exports.find =  async function find(username) {
+    const res = await request
+        .get(reqURL(`/find/${username}`))
+        .set('Content-Type', 'application/json')
+        .set('Acccept', 'application/json')
+        .auth('owca', 'T4KI3-H4X3R5KIE-H4SL0');
+    return res.body;
+}
