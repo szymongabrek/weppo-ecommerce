@@ -2204,7 +2204,8 @@ img {
   border-top: 1px solid #ccc;
 }
 #aa-product-details .aa-product-details-area .aa-product-details-bottom .nav-tabs {
-  text-align: center;
+  justify-content: center;
+  padding: 10px 0;
 }
 #aa-product-details .aa-product-details-area .aa-product-details-bottom .nav-tabs li {
   display: inline-block;

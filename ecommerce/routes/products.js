@@ -27,7 +27,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/view', async (req, res, next) => {
   const product = await products.read(req.query.key);
-  res.render('product/productview', {
+  res.render('product/view', {
       name: product ? product.name : "",
       productkey: req.query.key, product: product
   });
