@@ -8,21 +8,20 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                    <th>Id</th>
-                                    <th>Username</th>
-                                    <th>Fullname</th>
-                                    <th>Role</th>
-                                    <th>Orders</th>
+                                    <th>ID</th>
+                                    <th>User ID</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
                                     <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{#each users}}
+                                    {{#each orders}}
                                     <tr>
                                         <td><span>{{key}}</span></td>
-                                        <td><span>{{username}}</span></td>
-                                        <td><span>{{familyName}} {{givenName}} {{middleName}}</span></td>
-                                        <td><span>{{role}}</span></td>
+                                        <td><span>{{userkey}}</span></td>
+                                        <td><span>{{total}}</span></td>
+                                        <td><span>{{status}}</span></td>
                                         <td><a class="aa-cart-title" href="#">{{orders}}</a></td>
                                         <td>
                                             <a class="aa-cart-title" href="#"><i class="far fa-edit"></i></a>
