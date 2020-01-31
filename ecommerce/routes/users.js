@@ -12,4 +12,17 @@ const router = express.Router();
 const debug = require('debug')('ecommerce:router-users'); 
 const error = require('debug')('ecommerce:error-users'); 
 
+router.get('/login', function(req, res, next) { 
+  try {
+    res.render('login', { title: "Login to SimpleStore", user: req.user, }); 
+  } catch (e) { next(e); }
+}); 
+ 
+router.post('/login', 
+  passport.authenticate('local', { 
+    successRedirect: '/', // SUCCESS: Go to home page 
+    failureRedirect: 'login', // FAIL: Go to /user/login 
+  }) 
+);
+
 module.exports = router;
