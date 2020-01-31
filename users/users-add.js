@@ -8,14 +8,14 @@ const client = restify.createJsonClient({
   version: '*'
 });
 
-client.basicAuth('owca', 'T4KI3-H4X3R5KIE-H4SL0');
+client.basicAuth('them', 'T4KI3-H4X3R5KIE-H4SL0');
 
 client.post('/create-user', {
-    username: "lnx", password: "s3cret", provider: "local",
+    username: "test", password: "s3cret", provider: "local",
     familyName: "Gabrek", givenName: "Szymon", middleName: "",
     emails: [], photos: []
 },
 (err, req, res, obj) => {
-    if (err) console.error(err.stack);
+    if (err) console.error(err);
     else console.log('Created '+ util.inspect(obj));
 });

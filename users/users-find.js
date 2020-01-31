@@ -8,10 +8,10 @@ const client = restify.createJsonClient({
   version: '*'
 });
 
-client.basicAuth('owca', 'T4KI3-H4X3R5KIE-H4SL0');
+client.basicAuth('them', 'T4KI3-H4X3R5KIE-H4SL0');
 
 client.get('/find/'+ process.argv[2], 
 (err, req, res, obj) => {
-    if (err) console.error(err.stack);
+    if (err) console.error(err);
     else console.log('Found '+ util.inspect(obj));
 });
