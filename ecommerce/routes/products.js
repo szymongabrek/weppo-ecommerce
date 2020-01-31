@@ -3,6 +3,7 @@ const router = express.Router();
 const products = require('../models/products-sequelize');
 const faker = require('faker');
 const cartUtils = require('../helpers/cookie-cart');
+const { ensureAuthenticated } = require('./users'); 
 
 /* GET home page. */
 router.get('/', async (req, res, next) => {
@@ -48,6 +49,16 @@ router.get('/create', async (req, res, next) => {
     xs.push(product);
   }
   res.send(xs);
+});
+
+router.get('/add', ensureAuthenticated, (req, res, next) => {
+  try {
+      res.render('productedit', {
+          title: "Add a Product",
+          docreate: true, productkey: "",
+          user: req.user, product: undefined
+      });
+  } catch (e) { next(e); }
 });
 
 module.exports = router;
