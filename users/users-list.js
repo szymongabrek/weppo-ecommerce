@@ -8,7 +8,7 @@ const client = restify.createJsonClient({
   version: '*'
 });
 
-client.basicAuth('them', 'T4KI3-H4X3R5KIE-H4SL0');
+client.basicAuth('owca', 'T4KI3-H4X3R5KIE-H4SL0');
 
 client.get('/list',
 (err, req, res, obj) => {
