@@ -67,7 +67,7 @@ server.post('/find-or-create', async (req, res, next) => {
 // Find the user data (does not return password)
 server.get('/find/:username', async (req, res, next) => {
     try {
-        const user = await usersModel.find(req.params.username);
+        const user = await usersModel.find( req.params.username);
         if (!user) {
             res.send(404, new Error("Did not find "+ 
             req.params.username));
@@ -75,7 +75,7 @@ server.get('/find/:username', async (req, res, next) => {
             res.send(user);
         }
         next(false);
-    } catch(err) { res.send(500, err); next(false); }
+    } catch(err) { res.send(500, err.stack); next(false); }
 });
 
 // Delete/destroy a user record

@@ -54,21 +54,21 @@ module.exports.update = async function update(username, password, provider, fami
 
 module.exports.find = async function find(username) {
     const SQUser = await connectDB();
-    const user = await SQUser.find({ where: { username: username } });
+    const user = await SQUser.findOne({ where: { username: username } });
     const ret = user ? sanitizedUser(user) : undefined;
     return ret;
 }
 
 module.exports.destroy = async function destroy(username) {
     const SQUser = await connectDB();
-    const user = await SQUser.find({ where: { username: username } });
+    const user = await SQUser.findOne({ where: { username: username } });
     if (!user) throw new Error('Did not find requested '+ username +' to delete');
     user.destroy();
 }
 
 module.exports.userPasswordCheck = async function userPasswordCheck(username, password) {
     const SQUser = await connectDB();
-    const user = await SQUser.find({ where: { username: username } });
+    const user = await SQUser.findOne({ where: { username: username } });
     if (!user) {
         return { check: false, username: username, message: "Could not find user" };
     } else if (user.username === username && user.password === 
