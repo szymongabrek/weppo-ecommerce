@@ -2652,8 +2652,9 @@ img {
 }
 .aa-login-form .aa-lost-password {
   color: #555;
-  margin-top: 10px;
-  width: 100%;
+  margin-top: 16px;
+  margin-left: 20px;
+  display: inline-block;
 }
 .aa-login-form .aa-lost-password a {
   color: #555;
