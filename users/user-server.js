@@ -67,7 +67,7 @@ server.post('/find-or-create', async (req, res, next) => {
 // Find the user data (does not return password)
 server.get('/find/:username', async (req, res, next) => {
     try {
-        var user = await usersModel.find(req.params.username);
+        const user = await usersModel.find(req.params.username);
         if (!user) {
             res.send(404, new Error("Did not find "+ 
             req.params.username));
@@ -100,7 +100,7 @@ server.post('/passwordCheck', async (req, res, next) => {
 // List users
 server.get('/list', async (req, res, next) => {
     try {
-        var userlist = await usersModel.listUsers();
+        const userlist = await usersModel.listUsers();
         if (!userlist) userlist = [];
         res.send(userlist);
         next(false);

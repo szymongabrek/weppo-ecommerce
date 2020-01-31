@@ -14,24 +14,12 @@ async function connectDB() {
     const yamltext = await fs.readFile("./sequelize-sqlite.yml", 
     'utf8');
 
-    
-    
     const params = await jsyaml.safeLoad(yamltext, 'utf8');
     
     if (!sequlz) sequlz = new Sequelize(params.dbname, params.username,
-                                        params.password, 
-    params.params);
+                                        params.password, params.params);
     
-    // These fields largely come from the Passport / Portable Contacts 
-    // schema.
-    // See http://www.passportjs.org/docs/profile
-    //
-    // The emails and photos fields are arrays in Portable Contacts. 
-    // We'd need to set up additional tables for those.
-    //
-    // The Portable Contacts "id" field maps to the "username" field 
-    // here
-    
+
     if (!SQUser) SQUser = sequlz.define('User', {
         username: { type: Sequelize.STRING, unique: true },
         password: Sequelize.STRING,
@@ -102,14 +90,16 @@ module.exports.findOrCreate = async function findOrCreate(profile) {
 module.exports.listUsers = async function listUsers() {
     const SQUser = await connectDB();
     const userlist = await SQUser.findAll({});
+    
     return userlist.map(user => sanitizedUser(user));
 }
 
-module.exports.sanitizedUser = function sanitizedUser(user) {
+function sanitizedUser(user) {    
     const ret = {
         id: user.username, username: user.username,
         provider: user.provider,
-        familyName: user.familyName, givenName: user.givenName,
+        familyName: user.familyName,
+        givenName: user.givenName,
         middleName: user.middleName,
         emails: JSON.parse(user.emails),
         photos: JSON.parse(user.photos)
