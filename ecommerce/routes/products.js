@@ -28,11 +28,11 @@ router.get('/', async (req, res, next) => {
   } catch (e) { next(e); }
 });
 
-router.get('/view', async (req, res, next) => {
-  const product = await products.read(req.query.key);
+router.get('/view/:key', async (req, res, next) => {
+  const product = await products.read(req.params.key);
   res.render('product/productview', {
       name: product ? product.name : "",
-      productkey: req.query.key,
+      productkey: req.params.key,
       user: req.user ? req.user : undefined, 
       product: product
   });
@@ -63,25 +63,25 @@ router.get('/add', ensureAuthenticated, (req, res, next) => {
   } catch (e) { next(e); }
 });
 
-router.get('/edit', ensureAuthenticated, async (req, res, next) => { 
+router.get('/edit/:key', ensureAuthenticated, async (req, res, next) => { 
   try {
-      const product = await products.read(req.query.key);
+      const product = await products.read(req.params.key);
       res.render('product/edit', {
           title: product ? ("Edit " + product.name) : "Add Product",
           docreate: false,
-          productkey: req.query.key,
+          productkey: req.params.key,
           user: req.user ? req.user : undefined, 
           product: product
       });
   } catch (e) { next(e); }
 }); 
 
-router.get('/destroy', ensureAuthenticated, async (req, res, next) => { 
+router.get('/destroy/:key', ensureAuthenticated, async (req, res, next) => { 
   try {
-      const note = await products.read(req.query.key);
+      const note = await products.read(req.param.key);
       res.render('productdestroy', {
           name: product ? `Delete ${product.name}` : "",
-          productkey: req.query.key,
+          productkey: req.params.key,
           user: req.user ? req.user : undefined, 
           product: product
       });
