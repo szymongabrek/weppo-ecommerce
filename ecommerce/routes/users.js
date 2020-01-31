@@ -25,4 +25,13 @@ router.post('/login',
   }) 
 );
 
+router.get('/logout', function(req, res, next) { 
+  try {
+    req.session.destroy();
+    req.logout(); 
+    res.clearCookie(sessionCookieName);
+ res.redirect('/'); 
+ } catch (e) { next(e); }
+});
+
 module.exports = router;
