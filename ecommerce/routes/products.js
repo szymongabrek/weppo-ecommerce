@@ -32,7 +32,9 @@ router.get('/view', async (req, res, next) => {
   const product = await products.read(req.query.key);
   res.render('product/productview', {
       name: product ? product.name : "",
-      productkey: req.query.key, product: product
+      productkey: req.query.key,
+      user: req.user ? req.user : undefined, 
+      product: product
   });
 });
 
