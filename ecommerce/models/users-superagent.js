@@ -89,3 +89,12 @@ module.exports.findOrCreate = async function findOrCreate(profile) {
         .auth('owca', 'T4KI3-H4X3R5KIE-H4SL0');
     return res.body;
 }
+
+module.exports.listUsers = async function listUsers() { 
+    const res = await request
+        .get(reqURL('/list'))
+        .set('Content-Type', 'application/json')
+        .set('Acccept', 'application/json')
+        .auth('owca', 'T4KI3-H4X3R5KIE-H4SL0');
+    return res.body;
+}
