@@ -60,4 +60,17 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+module.exports.initPassport = function initPassport(app) { 
+  app.use(passport.initialize()); 
+  app.use(passport.session()); 
+}
+ 
+module.exports.ensureAuthenticated = function ensureAuthenticated(req, res, next) { 
+  try {
+    // req.user is set by Passport in the deserialize function 
+    if (req.user) next(); 
+    else res.redirect('/users/login'); 
+  } catch (e) { next(e); }
+}
+
 module.exports = app;
