@@ -5,7 +5,6 @@ const passport = require('passport');
 const passportLocal = require('passport-local');
 const LocalStrategy = passportLocal.Strategy; 
 const usersModel= require('../models/users-superagent');
-const { sessionCookieName } = require('../app');
 
 const router = express.Router();
 
@@ -27,9 +26,8 @@ router.post('/login',
 
 router.get('/logout', function(req, res, next) { 
   try {
-    req.session.destroy();
+    req.session = null
     req.logout(); 
-    res.clearCookie(sessionCookieName);
  res.redirect('/'); 
  } catch (e) { next(e); }
 });

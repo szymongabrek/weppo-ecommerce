@@ -13,21 +13,8 @@ const { usersRouter, initPassport} = require('./routes/users');
 const productsRouter = require('./routes/products');
 const cartRouter = require('./routes/cart');
 
-const session = require('express-session');
-const sessionFileStore = require('session-file-store');
-const FileStore = sessionFileStore(session); 
-const sessionCookieName = 'notescookie.sid';
-module.exports.sessionCookieName = sessionCookieName;
-
 const app = express();
 
-app.use(session({ 
-  store: new FileStore({ path: "sessions" }), 
-  secret: 'keyboard mouse',
-  resave: true,
-  saveUninitialized: true,
-  name: sessionCookieName
-})); 
 initPassport(app);
 
 // view engine setup
