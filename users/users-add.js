@@ -11,7 +11,7 @@ const client = restify.createJsonClient({
 client.basicAuth('owca', 'T4KI3-H4X3R5KIE-H4SL0');
 
 client.post('/create-user', {
-    username: "test2", password: "s3cret", provider: "local",
+    username: "test3", password: "s3cret", provider: "local",
     familyName: "Gabrek", givenName: "Szymon", middleName: "",
     emails: [], photos: []
 },

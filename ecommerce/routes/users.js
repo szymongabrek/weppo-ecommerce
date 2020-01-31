@@ -15,11 +15,21 @@ router.get('/login', function(req, res, next) {
   try {
     res.render('user/login', { title: "Login to SimpleStore", user: req.user, }); 
   } catch (e) { next(e); }
-}); 
- 
+});
+
 router.post('/login',
-  passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/login' }));
+  passport.authenticate('local'),
+  function(req, res) {
+    try {
+      res.redirect('/');
+
+    } catch (e) {
+      next(e)
+    }
+    // If this function gets called, authentication was successful.
+    // `req.user` contains the authenticated user.
+  });
+
 
 router.get('/logout', function(req, res, next) { 
   try {

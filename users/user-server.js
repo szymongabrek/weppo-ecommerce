@@ -107,12 +107,13 @@ server.del('/destroy/:username', async (req, res, next) => {
 // Check password
 server.post('/passwordCheck', async (req, res, next) => {
     try {
-        await usersModel.userPasswordCheck(
+        const check = await usersModel.userPasswordCheck(
             req.params.username, req.params.password);
+       
         res.send(check);
         next(false);
     } catch (err) {
-        // error(uti.inspect(req))
+        error(util.inspect(req.params))
         res.send(500, err.stack);
         next(false);
     }
