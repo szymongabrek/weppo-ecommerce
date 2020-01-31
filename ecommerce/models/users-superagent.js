@@ -32,3 +32,24 @@ module.exports.create = async function create(username, password,
         .auth('owca', 'T4KI3-H4X3R5KIE-H4SL0');
     return res.body;
 }
+
+module.exports.update = async function update(username, password,
+    provider, familyName, givenName, middleName,
+    emails, photos) {
+    const res = await request
+        .post(reqURL(`/update-user/${username}`))
+        .send({
+            username,
+            password,
+            provider,
+            familyName,
+            givenName,
+            middleName,
+            emails,
+            photos
+        })
+        .set('Content-Type', 'application/json')
+        .set('Acccept', 'application/json')
+        .auth('owca', 'T4KI3-H4X3R5KIE-H4SL0');
+    return res.body;
+}
