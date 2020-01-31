@@ -62,3 +62,30 @@ module.exports.find =  async function find(username) {
         .auth('owca', 'T4KI3-H4X3R5KIE-H4SL0');
     return res.body;
 }
+
+module.exports.userPasswordCheck = async function userPasswordCheck(username, password) { 
+    const res = await request
+        .post(reqURL(`/passwordCheck`))
+        .send({ username, password })
+        .set('Content-Type', 'application/json')
+        .set('Acccept', 'application/json')
+        .auth('owca', 'T4KI3-H4X3R5KIE-H4SL0');
+    return res.body;
+} 
+
+module.exports.findOrCreate = async function findOrCreate(profile) {  
+    const res = await request
+        .post(reqURL('/find-or-create'))
+        .send({ 
+            username: profile.id, password: profile.password, 
+            provider: profile.provider, 
+            familyName: profile.familyName, 
+            givenName: profile.givenName, 
+            middleName: profile.middleName, 
+            emails: profile.emails, photos: profile.photos 
+        })
+        .set('Content-Type', 'application/json')
+        .set('Acccept', 'application/json')
+        .auth('owca', 'T4KI3-H4X3R5KIE-H4SL0');
+    return res.body;
+}
