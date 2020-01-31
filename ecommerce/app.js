@@ -8,14 +8,27 @@ const hbs = require('hbs');
 const { cartAttach } = require('./helpers/cookie-cart');
 const bodyParser = require('body-parser');
 
-
 const indexRouter = require('./routes/index');
 const { usersRouter, initPassport} = require('./routes/users');
 const productsRouter = require('./routes/products');
 const cartRouter = require('./routes/cart');
 
+const session = require('express-session');
+const sessionFileStore = require('session-file-store');
+const FileStore = sessionFileStore(session); 
+const sessionCookieName = 'notescookie.sid';
+module.exports.sessionCookieName = sessionCookieName;
 
 const app = express();
+
+app.use(session({ 
+  store: new FileStore({ path: "sessions" }), 
+  secret: 'keyboard mouse',
+  resave: true,
+  saveUninitialized: true,
+  name: sessionCookieName
+})); 
+initPassport(app);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
