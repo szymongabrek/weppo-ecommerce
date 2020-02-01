@@ -10,10 +10,31 @@
 
 <body>
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-        <a class="navbar-brand p-3" href="/products">SIMPLE STORE {{user}}</a>
+        <a class="navbar-brand p-3" href="/products">SIMPLE STORE</a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
+                <li>
+                    <div class="nav-item d-flex align-items-center">
+                        <div class="navbar-text" id="profile-icon">
+                            <i class="far fa-user"></i>
+                        </div>
+                        <div class="d-flex flex-column ml-3">
+                            {{#if user}}
+                            <small class="navbar-text ml-auto">
+                                <strong>Hello,</strong>
+                            </small>
+                            <small class="navbar-text ml-auto">
+                                {{user.username}}
+                            </small>
+                            {{else}}
+                            <small class="navbar-text ml-auto">
+                                <strong>Log in</strong>
+                            </small>
+                            {{/if}}
+                        </div>
+                    </div>
+                </li>
                 <li>
                     <!-- cart box -->
                     <div class="nav-item d-flex align-items-center">
@@ -23,15 +44,12 @@
                             </a>
                         </div>
                         <div class="d-flex flex-column ml-3">
-                        {{# if cart.lines.length }}
                             <small class="navbar-text">
-                                <b>Your cart:</b>
+                                <b>Your cart:</b> {{#if cart.lines.length}} {{cart.totalQuantity}} {{else}} 0 {{/if}}item(s)
                             </small>
-                            <small class="navbar-text">
-                                {{cart.totalQuantity}} item(s)
-                                {{cart.totalValue}} zł
+                            <small class="navbar-text ml-auto">
+                                {{#if cart.lines.length}} {{cart.totalValue}} {{else}} 0.00 {{/if}} zł
                             </small>
-                        {{/if}}
                         </div>
                         
                     </div>

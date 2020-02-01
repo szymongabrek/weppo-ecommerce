@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const products = require('../models/products-sequelize');
 const faker = require('faker');
-const cartUtils = require('../helpers/cookie-cart');
 const { ensureAuthenticated } = require('./users'); 
 
 /* GET home page. */
@@ -13,16 +12,13 @@ router.get('/', async (req, res, next) => {
       return products.read(key)
     });
     let productlist = await Promise.all(keyPromises);
-    const cart = cartUtils.createCartFromJSON(req.session.cart);
+
+    console.log(req.session.cart);
     
     res.render('product/list', { 
       title: 'Products', 
       productlist: productlist,
-      cart: {
-        lines: cart.cartLines,
-        totalQuantity: cart.productCount,
-        totalValue: cart.total
-      },
+      cart: req.session.cart,
       user: req.user ? req.user : undefined
     });
   } catch (e) { next(e); }
@@ -34,7 +30,8 @@ router.get('/view/:key', async (req, res, next) => {
       name: product ? product.name : "",
       productkey: req.params.key,
       user: req.user ? req.user : undefined, 
-      product: product
+      product: product,
+      cart: req.session.cart
   });
 });
 
@@ -58,7 +55,8 @@ router.get('/add', ensureAuthenticated, (req, res, next) => {
       res.render('product/edit', {
           title: "Add a Product",
           docreate: true, productkey: "",
-          user: req.user, product: undefined
+          user: req.user, product: undefined,
+          cart: req.session.cart
       });
   } catch (e) { next(e); }
 });
@@ -71,7 +69,8 @@ router.get('/edit/:key', ensureAuthenticated, async (req, res, next) => {
           docreate: false,
           productkey: req.params.key,
           user: req.user ? req.user : undefined, 
-          product: product
+          product: product,
+          cart: req.session.cart
       });
   } catch (e) { next(e); }
 }); 
@@ -83,7 +82,8 @@ router.get('/destroy/:key', ensureAuthenticated, async (req, res, next) => {
           name: product ? `Delete ${product.name}` : "",
           productkey: req.params.key,
           user: req.user ? req.user : undefined, 
-          product: product
+          product: product,
+          cart: req.session.cart
       });
   } catch (e) { next(e); }
 }); 
