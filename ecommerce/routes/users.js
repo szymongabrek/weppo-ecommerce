@@ -5,6 +5,7 @@ const passport = require('passport');
 const passportLocal = require('passport-local');
 const LocalStrategy = passportLocal.Strategy; 
 const usersModel= require('../models/users-superagent');
+const { attachUserToCart } = require('../helpers/cookie-cart');
 
 const router = express.Router();
 
@@ -21,6 +22,7 @@ router.post('/login',
   passport.authenticate('local'),
   function(req, res) {
     try {
+      req.session.cart = attachUserToCart(req.session.cart, req.user);
       res.redirect('/');
 
     } catch (e) {
