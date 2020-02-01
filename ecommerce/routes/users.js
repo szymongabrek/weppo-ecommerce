@@ -21,11 +21,31 @@ router.get('/register', (req, res, next) => {
     } catch (e) { next(e); }
 });
 
+router.post('/register', async (req, res, next) => {
+    try {
+        if (req.user) { res.redirect('/'); }
+        const username = req.body.username;
+        const user = await usersModel.find(username);
+        if (user) { res.redirect('/users/register'); }
+        const password = req.body.password;
+        const provider = req.body.provider;
+        const familyName = req.body.familyName;
+        const givenName = req.body.givenName;
+        const middleName = req.body.middleName;
+        let emails = req.body.emails;
+        let photos = req.body.images;
+        emails = emails ? emails.trim().split(' ') : [];
+        photos = photos ? photos.trim().split(' ') : []; // assuming that images are actually links or smth
+        await usersModel.create(username, password, provider,
+            familyName, givenName, middleName, emails, photos);
+        res.redirect('/');
+
+    } catch (e) { next(e); }
+});
+
 router.get('/login', function(req, res, next) { 
     try {
-        if (req.user) {
-            res.redirect('/');
-        }
+        if (req.user) { res.redirect('/'); }
         res.render('user/login', { title: "Login to SimpleStore", user: req.user, }); 
     } catch (e) { next(e); }
 });

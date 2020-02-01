@@ -12,8 +12,6 @@ router.get('/', async (req, res, next) => {
       return products.read(key)
     });
     let productlist = await Promise.all(keyPromises);
-
-    console.log(req.session.cart);
     
     res.render('product/list', { 
       title: 'Products', 
