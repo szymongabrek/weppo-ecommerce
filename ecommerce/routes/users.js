@@ -14,6 +14,9 @@ const error = require('debug')('ecommerce:error-users');
 
 router.get('/login', function(req, res, next) { 
   try {
+    if (req.user) {
+      res.redirect('/');
+    }
     res.render('user/login', { title: "Login to SimpleStore", user: req.user, }); 
   } catch (e) { next(e); }
 });
