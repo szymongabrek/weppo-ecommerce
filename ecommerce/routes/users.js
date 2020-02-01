@@ -25,8 +25,8 @@ router.post('/register', async (req, res, next) => {
     try {
         if (req.user) { res.redirect('/'); }
         const username = req.body.username;
-        const user = await usersModel.find(username);
-        if (user) { res.redirect('/users/register'); }
+        // const user = await usersModel.find(username);
+        // if (user) { res.redirect('/users/register'); }
         const password = req.body.password;
         const provider = req.body.provider;
         const familyName = req.body.familyName;
