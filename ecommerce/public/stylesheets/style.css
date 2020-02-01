@@ -84,6 +84,7 @@ img {
 
 .navbar-text {
   padding: 0;
+  margin: 0;
 }
 
 .pagination {
@@ -92,6 +93,14 @@ img {
 
 .pagination li {
   float: left;
+}
+
+.nav-item {
+  margin-left: 20px;
+}
+
+p.navbar-text i {
+  margin-right: 5px;
 }
 
 .aa-primary-btn {
