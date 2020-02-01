@@ -1,0 +1,41 @@
+<section id="cart-view">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="cart-view-area">
+                    <div class="cart-view-table">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                    <th>Id</th>
+                                    <th>Username</th>
+                                    <th>Fullname</th>
+                                    <th>Role</th>
+                                    <th>Orders</th>
+                                    <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each users}}
+                                    <tr>
+                                        <td><span>{{key}}</span></td>
+                                        <td><span>{{username}}</span></td>
+                                        <td><span>{{familyName}} {{givenName}} {{middleName}}</span></td>
+                                        <td><span>{{role}}</span></td>
+                                        <td><a class="aa-cart-title" href="#">{{orders}}</a></td>
+                                        <td>
+                                            <a class="aa-cart-title" href="#"><i class="far fa-edit"></i></a>
+                                            <a class="aa-cart-title" href="#"><i class="far fa-trash-alt"></i></a>
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
