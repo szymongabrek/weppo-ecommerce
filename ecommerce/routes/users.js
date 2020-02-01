@@ -12,7 +12,6 @@ const router = express.Router();
 const debug = require('debug')('ecommerce:router-users'); 
 const error = require('debug')('ecommerce:error-users'); 
 
-
 router.get('/register', (req, res, next) => {
     try {
         if (req.user) {
