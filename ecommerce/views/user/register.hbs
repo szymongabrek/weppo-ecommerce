@@ -10,9 +10,21 @@
                                 <h4>Register</h4>
                                 <form action="/users/register" method="POST" class="aa-login-form">
                                     <label for="">Username<span>*</span></label>
-                                    <input type="text" placeholder="Username" name="username">
+                                    <input type="text" placeholder="Username" name="username" required>
                                     <label for="">Password<span>*</span></label>
-                                    <input type="password" placeholder="Password" name="password">
+                                    <input type="password" placeholder="Password" name="password" required>
+                                    <label for="">Given Name<span>*</span></label>
+                                    <input type="text" placeholder="Given Name" name="givenName" required>
+                                    <label for="">Family Name<span>*</span></label>
+                                    <input type="text" placeholder="Family Name" name="familyName" required>
+                                    <label for="">Middle Name</label>
+                                    <input type="text" placeholder="Middle Name" name="middleName">
+                                    <label for="">Provider</label>
+                                    <input type="text" placeholder="Provider" name="provider">
+                                    <label for="">Email</label>
+                                    <input type="text" placeholder="Email" name="email">
+                                    <label for="">Images</label>
+                                    <input type="text" placeholder="I don't think we're gonna use it, chief" name="images">
                                     <button type="submit" class="aa-browse-btn">Register</button>                    
                                 </form>
                             </div>
