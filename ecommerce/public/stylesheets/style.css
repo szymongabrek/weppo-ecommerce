@@ -95,12 +95,21 @@ img {
   float: left;
 }
 
+.navbar-nav > li {
+  border-left: 1px solid rgba(255,255,255,.5);
+  padding-right: 10px;
+}
+
+.navbar-nav > li:first-child {
+  border: none;
+}
+
 .nav-item {
   margin-left: 20px;
 }
 
-p.navbar-text i {
-  margin-right: 5px;
+#profile-icon {
+  font-size: 28px;
 }
 
 .aa-primary-btn {
