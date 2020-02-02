@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
 const logger = require('morgan');
 const hbs = require('hbs');
-const { cartAttach } = require('./helpers/cookie-cart');
+const { attachCartToSession } = require('./helpers/cookie-cart');
 const bodyParser = require('body-parser');
 
 const indexRouter = require('./routes/index');
@@ -33,7 +33,7 @@ app.use(cookieParser());
 initPassport(app);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules','bootstrap','dist')));
-app.use(cartAttach);
+app.use(attachCartToSession);
 app.use(bodyParser.urlencoded({extended: true}));
 
 

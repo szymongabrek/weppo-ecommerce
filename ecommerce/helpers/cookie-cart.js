@@ -1,21 +1,26 @@
 const Cart = require('../models/Cart');
 
 function generateKey() {
-    return 1; // very unique key
+    return undefined; // very unique key
 }
 
-function setKey(user) {
+function getKey(user) {
     return user ? user.key : generateKey();
 }
 
-exports.cartAttach = (req, res, next) => {
+exports.attachCartToSession = (req, res, next) => {
     if (!req.session.cart) {
         const cartlines = [];
-        const userkey = setKey(req.user);
+        const userkey = getKey(req.user);
         const cart = new Cart(cartlines, userkey);
         req.session.cart = this.createCookieCartFromCart(cart);
     }
     next();
+}
+
+exports.attachUserToCart = (cart, user) => {
+    cart.userkey = user.username;
+    return cart;
 }
 
 exports.createCartFromJSON = (jsonCart) => {
