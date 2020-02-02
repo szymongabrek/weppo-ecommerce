@@ -70,11 +70,9 @@
                     <div class="aa-sidebar-widget">
                         <h3>Category</h3>
                         <ul class="aa-catg-nav">
-                            <li><a href="#">Category 1</a></li>
-                            <li><a href="#">Category 2</a></li>
-                            <li><a href="#">Category 3</a></li>
-                            <li><a href="#">Category 4</a></li>
-                            <li><a href="#">Category 5</a></li>
+                            {{#each categories}}
+                            <li><a href="#">{{this}}</a></li>
+                            {{/each}}
                         </ul>
                     </div>
                     <!-- single sidebar -->

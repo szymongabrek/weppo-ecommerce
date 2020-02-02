@@ -157,3 +157,10 @@ module.exports.close = async function close() {
   sequlz = undefined;
   SQProduct = undefined;
 }
+
+module.exports.categories = async function categories() {
+  const SQProduct = await connectDB();
+  // thing below returns a list of objects { DISTINCT: '<categoryName>' }
+  const categories = await SQProduct.aggregate('category', 'DISTINCT', { plain: false });
+  return categories.map(obj => obj.DISTINCT);
+}
