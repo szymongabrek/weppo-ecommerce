@@ -75,7 +75,7 @@ router.get('/edit/:key', ensureAuthenticated, ensurePermissions, async (req, res
   } catch (e) { next(e); }
 }); 
 
-router.get('/destroy/:key', ensureAuthenticated, async (req, res, next) => { 
+router.get('/destroy/:key', ensureAuthenticated, ensurePermissions, async (req, res, next) => { 
   try {
       const product = await products.read(req.params.key);
       res.render('product/destroy', {
@@ -88,7 +88,7 @@ router.get('/destroy/:key', ensureAuthenticated, async (req, res, next) => {
   } catch (e) { next(e); }
 }); 
 
-router.post('/destroy/:key', ensureAuthenticated, async (req, res, next) => { 
+router.post('/destroy/:key', ensureAuthenticated, ensurePermissions, async (req, res, next) => { 
   try {
     await products.destroy(req.params.key);
     res.redirect('/products')
