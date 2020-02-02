@@ -23,9 +23,7 @@ router.post('/login',
     try {
       res.redirect('/');
 
-    } catch (e) {
-      next(e)
-    }
+    } catch (e) { next(e) }
     // If this function gets called, authentication was successful.
     // `req.user` contains the authenticated user.
   });
@@ -36,6 +34,14 @@ router.get('/logout', function(req, res, next) {
     req.session = null
     req.logout(); 
     res.redirect('/'); 
+ } catch (e) { next(e); }
+});
+
+router.get('/find/:username',async function(req, res, next) { 
+  try {
+    const username = req.params.username;
+    const user = await usersModel.find(username);
+    res.json(user);
  } catch (e) { next(e); }
 });
 

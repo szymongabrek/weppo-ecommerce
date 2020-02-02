@@ -28,28 +28,30 @@ async function connectDB() {
         givenName: Sequelize.STRING,
         middleName: Sequelize.STRING,
         emails: Sequelize.STRING(2048),
-        photos: Sequelize.STRING(2048)
+        photos: Sequelize.STRING(2048),
+        role : Sequelize.STRING
     });
     
     return SQUser.sync();
 }
 
-module.exports.create = async function create(username, password, provider, familyName, givenName, middleName, emails, photos) {
+module.exports.create = async function create(username, password, provider, familyName, givenName, middleName, emails, photos, role) {
     const SQUser = await connectDB();
     return SQUser.create({
         username, password, provider,
         familyName, givenName, middleName,
-        emails: JSON.stringify(emails), photos: JSON.stringify(photos)
+        emails: JSON.stringify(emails), photos: JSON.stringify(photos), role: "ROLE_USER"
     });
 }
 
-module.exports.update = async function update(username, password, provider, familyName, givenName, middleName, emails, photos) {
+module.exports.update = async function update(username, password, provider, familyName, givenName, middleName, emails, photos, role) {
     const user = await find(username);
     return user ? user.updateAttributes({
         password, provider,
         familyName, givenName, middleName,
         emails: JSON.stringify(emails),
-        photos: JSON.stringify(photos)
+        photos: JSON.stringify(photos),
+        role: "ROLE_USER"
     }) : undefined;
 }
 
@@ -85,7 +87,7 @@ module.exports.findOrCreate = async function findOrCreate(profile) {
     if (user) return user;
     return await create(profile.id, profile.password, profile.provider,
                     profile.familyName, profile.givenName, profile.middleName,
-                    profile.emails, profile.photos);
+                    profile.emails, profile.photos, "ROLE_USER");
 }
 
 module.exports.listUsers = async function listUsers() {
@@ -103,7 +105,8 @@ function sanitizedUser(user) {
         givenName: user.givenName,
         middleName: user.middleName,
         emails: JSON.parse(user.emails),
-        photos: JSON.parse(user.photos)
+        photos: JSON.parse(user.photos),
+        role: user.role 
     };
     try {
         ret.emails = JSON.parse(user.emails);
