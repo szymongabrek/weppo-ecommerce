@@ -113,6 +113,28 @@ module.exports.destroy = async function destroy(key) {
   return product.destroy();
 }
 
+module.exports.search = async function search(term) {
+const SQProduct = await connectDB();
+const products = await SQProduct.findAll({
+  where: {
+    name: {
+      [products.like]: '%' + term + '%'
+    }
+  }
+});
+if (!products) {
+  throw new Error(`No search result for ${term}`);
+} else {
+  return products.map(product=>new Product({
+    key: product.productkey,
+    name: product.name,
+    description: product.description,
+    price: product.price,
+    category: product.category
+  }))
+}
+}
+
 module.exports.keylist = async function keylist() {
   const SQProduct = await connectDB();
   const products = await SQProduct.findAll({

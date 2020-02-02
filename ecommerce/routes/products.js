@@ -92,4 +92,14 @@ router.post('/destroy/confirm', ensureAuthenticated, (req, res, next) => {
   // TODO: Delete confirmation route
 }); 
 
+router.get('/search', async (req, res) => {
+  const result = await products.search(req.params.key);
+  res.render('product/search', {
+      result: result ? result : undefined,
+      user: req.user ? req.user : undefined, 
+      cart: req.session.cart
+  });
+});
+
+
 module.exports = router;
