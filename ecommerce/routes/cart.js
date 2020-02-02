@@ -61,6 +61,10 @@ router.get('/checkout', async (req, res) => {
         },
         user: req.user ? req.user : undefined
     });
-})
+});
+
+router.post('/checkout', async (req, res) => {
+    // TODO
+});
 
 module.exports = router;
