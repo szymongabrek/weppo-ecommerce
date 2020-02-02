@@ -1772,16 +1772,13 @@ img {
   padding: 5px 125px 5px 10px;
   width: 100%;
 }
-#aa-subscribe .aa-subscribe-area .aa-subscribe-form input[type="submit"] {
+#aa-subscribe .aa-subscribe-area .aa-subscribe-form button {
   color: #fff;
   font-size: 15px;
   font-weight: bold;
   height: 40px;
   letter-spacing: 1px;
-  position: absolute;
-  right: 0;
   text-transform: uppercase;
-  top: 0;
   width: 120px;
 }
 
@@ -4038,7 +4035,7 @@ img {
     font-size: 14px;
   }
 
-  #aa-subscribe .aa-subscribe-area .aa-subscribe-form input[type="submit"] {
+  #aa-subscribe .aa-subscribe-area .aa-subscribe-form button {
     font-size: 14px;
   }
 

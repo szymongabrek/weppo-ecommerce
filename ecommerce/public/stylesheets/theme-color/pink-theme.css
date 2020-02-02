@@ -159,7 +159,7 @@ h2 {
   .aa-latest-blog-single .aa-blog-info .aa-read-mor-btn:hover span, .aa-latest-blog-single .aa-blog-info .aa-read-mor-btn:focus span {  
     color: #ff2851;
   }
-  #aa-subscribe .aa-subscribe-area .aa-subscribe-form input[type="submit"] {
+  #aa-subscribe .aa-subscribe-area .aa-subscribe-form button {
     background: #ff2851 none repeat scroll 0 0;
     border: 1px solid #ff2851;  
   }
