@@ -72,6 +72,14 @@ router.get('/logout', function(req, res, next) {
     } catch (e) { next(e); }
 });
 
+router.get('/find/:username',async function(req, res, next) { 
+  try {
+    const username = req.params.username;
+    const user = await usersModel.find(username);
+    res.json(user);
+ } catch (e) { next(e); }
+});
+
 passport.use(new LocalStrategy( 
     async (username, password, done) => { 
         try {

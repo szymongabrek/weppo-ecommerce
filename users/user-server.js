@@ -54,7 +54,7 @@ server.post('/update-user/:username', async (req, res, next) => {
 
 // Find a user, if not found create one given profile information
 server.post('/find-or-create', async (req, res, next) => {
-    log('find-or-create ' + util.inspect(req.params));
+    // log('find-or-create ' + util.inspect(req.params));
     try {
         const result = await usersModel.findOrCreate({
             id: req.params.username,
