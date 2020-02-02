@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const products = require('../models/products-sequelize');
-const faker = require('faker');
 const { ensureAuthenticated, ensurePermissions } = require('./users'); 
 
 /* GET home page. */
