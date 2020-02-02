@@ -25,7 +25,7 @@ router.get('/register', (req, res, next) => {
         if (req.user) {
             res.redirect('/');
         }
-        res.render('user/register', { title: "Register to SimpleStore", user: req.user, }); 
+        res.render('user/register', { title: "Register to SimpleStore", user: req.user, cart: req.session.cart }); 
     } catch (e) { next(e); }
 });
 
@@ -54,7 +54,7 @@ router.post('/register', async (req, res, next) => {
 router.get('/login', function(req, res, next) { 
     try {
         if (req.user) { res.redirect('/'); }
-        res.render('user/login', { title: "Login to SimpleStore", user: req.user, }); 
+        res.render('user/login', { title: "Login to SimpleStore", user: req.user, cart: req.session.cart}); 
     } catch (e) { next(e); }
 });
 
