@@ -44,7 +44,7 @@ router.post('/register', async (req, res, next) => {
         let photos = req.body.images;
         emails = emails ? emails.trim().split(' ') : [];
         photos = photos ? photos.trim().split(' ') : []; // assuming that images are actually links or smth
-        await usersModel.findOrCreate({username, password, provider,
+        await usersModel.create({username, password, provider,
             familyName, givenName, middleName, emails, photos});
         res.redirect('/');
 

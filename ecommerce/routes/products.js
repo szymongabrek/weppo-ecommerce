@@ -7,6 +7,7 @@ const { ensureAuthenticated } = require('./users');
 /* GET home page. */
 router.get('/', async (req, res, next) => {
   try {
+    let categories = await products.categories();
     let keylist = await products.keylist();
     let keyPromises = keylist.map(key => {
       return products.read(key)
@@ -17,7 +18,8 @@ router.get('/', async (req, res, next) => {
       title: 'Products', 
       productlist: productlist,
       cart: req.session.cart,
-      user: req.user ? req.user : undefined
+      user: req.user ? req.user : undefined,
+      categories: categories
     });
   } catch (e) { next(e); }
 });
