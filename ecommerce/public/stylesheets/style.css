@@ -89,6 +89,7 @@ img {
 
 .pagination {
   display: inline-block;
+  margin-bottom: 20px;
 }
 
 .pagination li {
