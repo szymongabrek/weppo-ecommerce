@@ -3,6 +3,7 @@
 // const jsyaml = require('js-yaml');
 const Product = require('./Product');
 const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 const debug = require('debug')('products:products-sequelize');
 const error = require('debug')('products:error-sequelize');
 
@@ -114,14 +115,16 @@ module.exports.destroy = async function destroy(key) {
 }
 
 module.exports.search = async function search(term) {
+  
 const SQProduct = await connectDB();
 const products = await SQProduct.findAll({
   where: {
     name: {
-      [products.like]: '%' + term + '%'
+      [Op.like]: '%' + term + '%'
     }
   }
 });
+debug(products);
 if (!products) {
   throw new Error(`No search result for ${term}`);
 } else {
