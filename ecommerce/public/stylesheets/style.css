@@ -435,14 +435,15 @@ img {
   text-transform: uppercase;
 }
 
-#aa-header .aa-header-bottom .aa-header-bottom-area .aa-search-box {
+#aa-header .aa-header-bottom .aa-header-bottom-area .aa-search-box,
+.aa-search-box {
   float: right;
   margin-right: 5%;
-  margin-top: 13px;
   position: relative;
   width: 500px;
 }
-#aa-header .aa-header-bottom .aa-header-bottom-area .aa-search-box input[type="text"] {
+#aa-header .aa-header-bottom .aa-header-bottom-area .aa-search-box input[type="text"],
+.aa-search-box input[type="text"] {
   border: 1px solid #ddd;
   color: #555;
   font-size: 14px;
@@ -451,7 +452,8 @@ img {
   padding: 10px 55px 10px 10px;
   width: 100%;
 }
-#aa-header .aa-header-bottom .aa-header-bottom-area .aa-search-box button {
+#aa-header .aa-header-bottom .aa-header-bottom-area .aa-search-box button,
+.aa-search-box button {
   border: medium none;
   color: #fff;
   height: 100%;
@@ -465,7 +467,8 @@ img {
   -o-transition: all 0.5s;
   transition: all 0.5s;
 }
-#aa-header .aa-header-bottom .aa-header-bottom-area .aa-search-box button:hover {
+#aa-header .aa-header-bottom .aa-header-bottom-area .aa-search-box button:hover,
+.aa-search-box button:hover {
   opacity: 0.8;
 }
 #aa-header .aa-header-bottom .aa-cartbox {
