@@ -212,7 +212,7 @@ h2 {
   #cart-view .cart-view-area .cart-view-table .table tbody tr td .aa-cart-title:hover {
     color: #ff2851;
   }
-  #checkout .checkout-area .checkout-left .panel-group .panel-default .panel-heading .panel-title a { 
+  #checkout .checkout-area .checkout-left .panel-group .panel-default .panel-heading .card-title a { 
     color: #ff2851;
   }
   #checkout .checkout-area .checkout-right h4 { 

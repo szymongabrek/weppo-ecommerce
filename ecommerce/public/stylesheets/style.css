@@ -113,6 +113,14 @@ img {
   font-size: 28px;
 }
 
+.panel-group .card {
+  border-radius: 4px;
+}
+
+.panel-group .card + .card {
+  margin-top: 5px;
+}
+
 .aa-primary-btn {
   font-size: 16px;
   padding: 10px 30px;
@@ -2462,18 +2470,15 @@ img {
   float: left;
   width: 100%;
 }
-#checkout .checkout-area .checkout-left .panel-group .panel-default {
-  border-radius: 0;
-}
 #checkout .checkout-area .checkout-left .panel-group .panel-default .panel-heading {
   background-color: transparent;
   padding: 0;
 }
-#checkout .checkout-area .checkout-left .panel-group .panel-default .panel-heading .panel-title {
+#checkout .checkout-area .checkout-left .panel-group .panel-default .panel-heading .card-title {
   font-size: 18px;
   padding: 20px 15px;
 }
-#checkout .checkout-area .checkout-left .panel-group .panel-default .panel-heading .panel-title a {
+#checkout .checkout-area .checkout-left .panel-group .panel-default .panel-heading .card-title a {
   display: block; 
 }
 #checkout .checkout-area .checkout-left .panel-group .aa-checkout-coupon .aa-coupon-code {

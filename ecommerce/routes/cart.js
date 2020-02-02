@@ -50,4 +50,17 @@ router.post('/update', async (req, res) => {
     res.redirect('/cart');
 });
 
+router.get('/checkout', async (req, res) => {
+    const cart = cartUtils.createCartFromJSON(req.session.cart);
+    res.render('cart/checkout', {
+        title: 'Checkout', 
+        cart: {
+            lines: cart.cartLines,
+            totalQuantity: cart.productCount,
+            totalValue: cart.total
+        },
+        user: req.user ? req.user : undefined
+    });
+})
+
 module.exports = router;
