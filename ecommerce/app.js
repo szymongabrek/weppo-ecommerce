@@ -15,9 +15,6 @@ const cartRouter = require('./routes/cart');
 
 const app = express();
 
-
-initPassport(app);
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -33,6 +30,7 @@ app.use(cookieSession({
   maxAge: 24 * 60 * 60 * 1000 // 24 hours
 }));
 app.use(cookieParser());
+initPassport(app);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules','bootstrap','dist')));
 app.use(cartAttach);

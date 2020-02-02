@@ -84,6 +84,7 @@ img {
 
 .navbar-text {
   padding: 0;
+  margin: 0;
 }
 
 .pagination {
@@ -92,6 +93,23 @@ img {
 
 .pagination li {
   float: left;
+}
+
+.navbar-nav > li {
+  border-left: 1px solid rgba(255,255,255,.5);
+  padding-right: 10px;
+}
+
+.navbar-nav > li:first-child {
+  border: none;
+}
+
+.nav-item {
+  margin-left: 20px;
+}
+
+#profile-icon {
+  font-size: 28px;
 }
 
 .aa-primary-btn {
@@ -2337,7 +2355,6 @@ img {
   float: left;
   width: 100%;
   padding: 30px;
-  min-height: 350px;
 }
 #cart-view .cart-view-area .cart-view-table .table {
   border: 1px solid #ddd;
