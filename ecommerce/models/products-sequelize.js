@@ -111,7 +111,7 @@ module.exports.destroy = async function destroy(key) {
       productkey: key
     }
   })
-  return product.destroy();
+  return await product.destroy();
 }
 
 module.exports.search = async function search(term) {

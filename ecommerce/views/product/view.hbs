@@ -21,10 +21,14 @@
                                     </div>
                                     <p class="aa-product-short-descrip">{{product.description}}</p>
                                     <p class="aa-prod-category">
-                                            Category: <a href="#">{{product.category}}</a>
+                                            Category: <a href="/products/{{product.category}}">{{product.category}}</a>
                                     </p>
                                     <div class="aa-prod-view-bottom">
                                         <a class="aa-add-to-cart-btn" href="/cart/add/{{product.key}}">Add To Cart</a>
+                                        {{#if user.isAdmin}}
+                                        <a class="aa-add-to-cart-btn" href="/cart/edit/{{product.key}}">Modify</a>
+                                        <a class="aa-add-to-cart-btn" href="/cart/destroy/{{product.key}}">Delete</a>
+                                        {{/if}}
                                     </div>
                                 </div>
                             </div>
