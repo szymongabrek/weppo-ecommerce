@@ -4,7 +4,7 @@
   "description": "",
   "main": "user-server.js",
   "scripts": {
-    "start": "DEBUG=users:* PORT=3333 SEQUELIZE_CONNECT=sequelize-sqlite.yaml nodemon user-server"
+    "start": "set DEBUG=users:* && set PORT=3333 && set SEQUELIZE_CONNECT=sequelize-sqlite.yaml && nodemon user-server"
   },
   "keywords": [],
   "author": "",

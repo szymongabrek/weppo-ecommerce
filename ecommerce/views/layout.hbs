@@ -13,6 +13,14 @@
         <a class="navbar-brand p-3" href="/products">SIMPLE STORE</a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav m-auto">
+                <div class="aa-search-box">
+                    <form action="/products/search/" method="POST">
+                        <input type="text" name="term" id="" placeholder="Search here ex. 'man' ">
+                        <button type="submit"><span class="fa fa-search"></span></button>
+                    </form>
+              </div>
+            </ul>
             <ul class="navbar-nav ml-auto">
                 <li>
                     <div class="nav-item d-flex align-items-center">
@@ -28,10 +36,15 @@
                                 {{user.username}}
                             </small>
                         </div>
+                        <div class="d-flex flex-column ml-3">
+                            <small class="navbar-text ml-auto">
+                                <a href="/users/logout"><strong>Log Out</strong></a>
+                            </small>
+                        </div>
                         {{else}}
                         <div class="d-flex flex-column ml-3">
                             <small class="navbar-text ml-auto">
-                                <a href="/users/login"><strong>Log in</strong></a>
+                                <a href="/users/login"><strong>Log In</strong></a>
                             </small>
                         </div>
                         <div class="d-flex flex-column ml-3" id="register">

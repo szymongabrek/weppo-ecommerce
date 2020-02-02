@@ -42,7 +42,8 @@ h2 {
   #aa-header .aa-header-bottom .aa-header-bottom-area .aa-logo a strong {
     color: #ff2851;
   }
-  #aa-header .aa-header-bottom .aa-header-bottom-area .aa-search-box button {
+  #aa-header .aa-header-bottom .aa-header-bottom-area .aa-search-box button,
+  .aa-search-box button {
     background-color: #ff2851;  
   }
   #aa-header .aa-header-bottom .aa-cartbox .aa-cart-link {

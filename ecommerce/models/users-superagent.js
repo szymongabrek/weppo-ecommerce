@@ -12,9 +12,9 @@ function reqURL(path) {
     return requrl.toString();
 }
 
-module.exports.create = async function create(username, password,
+module.exports.create = async function create({username, password,
     provider, familyName, givenName, middleName,
-    emails, photos) {
+    emails, photos}) {
     const res = await request
         .post(reqURL('/create-user'))
         .send({
@@ -33,9 +33,9 @@ module.exports.create = async function create(username, password,
     return res.body;
 }
 
-module.exports.update = async function update(username, password,
+module.exports.update = async function update({username, password,
     provider, familyName, givenName, middleName,
-    emails, photos) {
+    emails, photos}) {
     const res = await request
         .post(reqURL(`/update-user/${username}`))
         .send({

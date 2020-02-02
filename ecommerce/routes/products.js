@@ -90,6 +90,12 @@ router.post('/destroy/confirm', ensureAuthenticated, (req, res, next) => {
   // TODO: Delete confirmation route
 }); 
 
+router.post('/search', (req, res) => {
+  const term = req.body.term;
+  if (!term) { res.redirect('/products'); }
+  res.redirect(`/products/search/${term}`);
+}) 
+
 router.get('/search/:term', async (req, res) => {
   try {
    

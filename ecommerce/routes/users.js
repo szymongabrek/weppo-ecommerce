@@ -10,7 +10,15 @@ const { attachUserToCart } = require('../helpers/cookie-cart');
 const router = express.Router();
 
 const debug = require('debug')('ecommerce:router-users'); 
-const error = require('debug')('ecommerce:error-users'); 
+const error = require('debug')('ecommerce:error-users');
+
+router.get('/', async (req, res, next) => {
+    try {
+        if (!req.user.isAdmin) { res.send('Unauthorized'); }
+        const users = await usersModel.listUsers();
+        res.render('user/list', { users });
+    } catch (e) { next(e); }
+});
 
 router.get('/register', (req, res, next) => {
     try {
@@ -36,8 +44,8 @@ router.post('/register', async (req, res, next) => {
         let photos = req.body.images;
         emails = emails ? emails.trim().split(' ') : [];
         photos = photos ? photos.trim().split(' ') : []; // assuming that images are actually links or smth
-        await usersModel.create(username, password, provider,
-            familyName, givenName, middleName, emails, photos);
+        await usersModel.findOrCreate({username, password, provider,
+            familyName, givenName, middleName, emails, photos});
         res.redirect('/');
 
     } catch (e) { next(e); }
@@ -86,7 +94,8 @@ passport.use(new LocalStrategy(
             const check = await usersModel.userPasswordCheck(username, 
             password);
             if (check.check) { 
-                done(null, { id: check.username, username: check.username }); 
+                const role = await usersModel.find(username).role;
+                done(null, { id: check.username, username: check.username, isAdmin: role === 'ROLE_ADMIN' }); 
             } else { 
                 done(null, false, check.message); 
             } 
