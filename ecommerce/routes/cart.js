@@ -11,7 +11,8 @@ router.get('/', (req, res) => {
             lines: cart.cartLines,
             totalQuantity: cart.productCount,
             totalValue: cart.total
-        }
+        },
+        user: req.user ? req.user : undefined
     });
 });
 
