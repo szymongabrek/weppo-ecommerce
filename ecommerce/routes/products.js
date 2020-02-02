@@ -24,6 +24,20 @@ router.get('/', async (req, res, next) => {
   } catch (e) { next(e); }
 });
 
+router.get('/:category', async (req, res, next) => {
+  try {
+    const categories = await products.categories();
+    const productlist = await products.findByCategory(req.params.category);
+    res.render('product/list', { 
+      title: 'Products', 
+      productlist: productlist,
+      cart: req.session.cart,
+      user: req.user ? req.user : undefined,
+      categories: categories
+    });
+  } catch (e) { next(e); }
+});
+
 router.get('/view/:key', async (req, res, next) => {
   const product = await products.read(req.params.key);
   res.render('product/view', {

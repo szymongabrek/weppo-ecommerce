@@ -164,3 +164,19 @@ module.exports.categories = async function categories() {
   const categories = await SQProduct.aggregate('category', 'DISTINCT', { plain: false });
   return categories.map(obj => obj.DISTINCT);
 }
+
+module.exports.findByCategory = async function findByCategory(category) {
+  const SQProduct = await connectDB();
+  const products = await SQProduct.findAll({
+    where: {
+      category: category
+    }
+  });
+  return products.map(product=>new Product({
+    key: product.productkey,
+    name: product.name,
+    description: product.description,
+    price: product.price,
+    category: product.category
+  }));
+}
