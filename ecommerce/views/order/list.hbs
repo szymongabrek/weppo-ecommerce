@@ -20,13 +20,9 @@
                                     <tr>
                                         <td><span>{{key}}</span></td>
                                         <td><span>{{userkey}}</span></td>
-                                        <td><span>{{total}}</span></td>
+                                        <td><span>{{total}} zł</span></td>
                                         <td><span>{{status}}</span></td>
-                                        <td><a class="aa-cart-title" href="#">{{orders}}</a></td>
-                                        <td>
-                                            <a class="aa-cart-title" href="#"><i class="far fa-edit"></i></a>
-                                            <a class="aa-cart-title" href="#"><i class="far fa-trash-alt"></i></a>
-                                        </td>
+                                        <td><a class="aa-cart-title" href="/orders/{{key}}">{{products.length}}</a></td>
                                     </tr>
                                     {{/each}}
                                 </tbody>

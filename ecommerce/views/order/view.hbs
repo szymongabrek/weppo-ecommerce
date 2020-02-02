@@ -5,12 +5,11 @@
         <div class="col-md-12">
             <div class="cart-view-area">
             <div class="cart-view-table">
-                <form action="/cart/update" method="POST">
+                <form action="" method="">
                 <div class="table-responsive">
                         <table class="table">
                         <thead>
                             <tr>
-                            <th></th>
                             <th>Product</th>
                             <th>Price</th>
                             <th>Quantity</th>
@@ -20,7 +19,6 @@
                         <tbody>
                             {{#each cart.lines}}
                             <tr>
-                                <td><a class="remove" href="/cart/remove/{{product.key}}"><i class="fas fa-times"></i></a></td>
                                 <td><a class="aa-cart-title" href="/products/{{product.key}}">{{product.name}}</a></td>
                                 <td>{{product.price}} zł</td>
                                 <!-- quantities[key] doesnt quite work -- result will be literal 'quantities[123...]'
@@ -29,15 +27,6 @@
                                 <td>{{total}} zł</td>
                             </tr>
                             {{/each}}
-                            <tr>
-                                <td colspan="6" class="aa-cart-view-bottom">
-                                <div class="aa-cart-coupon">
-                                    <input class="aa-coupon-code" type="text" placeholder="Coupon">
-                                    <input class="aa-cart-view-btn" type="submit" value="Apply Coupon">
-                                </div>
-                                <button class="aa-cart-view-btn" type="submit">Update Cart</button>
-                                </td>
-                            </tr>
                             </tbody>
                         </table>
                 </div>
@@ -53,7 +42,6 @@
                     </tr>
                     </tbody>
                 </table>
-                <a href="/cart/checkout" class="aa-cart-view-btn">Proceed to Checkout</a>
                 </div>
             </div>
             </div>
@@ -62,7 +50,3 @@
     </div>
 </section>
 <!-- / Cart view section -->
-
-<div class="btn-group pull-right m-1">
-    <...>
-</div>
