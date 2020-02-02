@@ -16,7 +16,7 @@ router.get('/', async (req, res, next) => {
     try {
         if (!req.user.isAdmin) { res.send('Unauthorized'); }
         const users = await usersModel.listUsers();
-        res.render('/user/list', { users });
+        res.render('user/list', { users });
     } catch (e) { next(e); }
 });
 
