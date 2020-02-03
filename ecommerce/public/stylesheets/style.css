@@ -89,6 +89,7 @@ img {
 
 .pagination {
   display: inline-block;
+  margin-bottom: 20px;
 }
 
 .pagination li {
@@ -110,6 +111,14 @@ img {
 
 #profile-icon {
   font-size: 28px;
+}
+
+.panel-group .card {
+  border-radius: 4px;
+}
+
+.panel-group .card + .card {
+  margin-top: 5px;
 }
 
 .aa-primary-btn {
@@ -1772,16 +1781,13 @@ img {
   padding: 5px 125px 5px 10px;
   width: 100%;
 }
-#aa-subscribe .aa-subscribe-area .aa-subscribe-form input[type="submit"] {
+#aa-subscribe .aa-subscribe-area .aa-subscribe-form button {
   color: #fff;
   font-size: 15px;
   font-weight: bold;
   height: 40px;
   letter-spacing: 1px;
-  position: absolute;
-  right: 0;
   text-transform: uppercase;
-  top: 0;
   width: 120px;
 }
 
@@ -2464,18 +2470,15 @@ img {
   float: left;
   width: 100%;
 }
-#checkout .checkout-area .checkout-left .panel-group .panel-default {
-  border-radius: 0;
-}
 #checkout .checkout-area .checkout-left .panel-group .panel-default .panel-heading {
   background-color: transparent;
   padding: 0;
 }
-#checkout .checkout-area .checkout-left .panel-group .panel-default .panel-heading .panel-title {
+#checkout .checkout-area .checkout-left .panel-group .panel-default .panel-heading .card-title {
   font-size: 18px;
   padding: 20px 15px;
 }
-#checkout .checkout-area .checkout-left .panel-group .panel-default .panel-heading .panel-title a {
+#checkout .checkout-area .checkout-left .panel-group .panel-default .panel-heading .card-title a {
   display: block; 
 }
 #checkout .checkout-area .checkout-left .panel-group .aa-checkout-coupon .aa-coupon-code {
@@ -4038,7 +4041,7 @@ img {
     font-size: 14px;
   }
 
-  #aa-subscribe .aa-subscribe-area .aa-subscribe-form input[type="submit"] {
+  #aa-subscribe .aa-subscribe-area .aa-subscribe-form button {
     font-size: 14px;
   }
 

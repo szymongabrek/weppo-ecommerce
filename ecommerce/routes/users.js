@@ -129,4 +129,11 @@ module.exports.ensureAuthenticated = function ensureAuthenticated(req, res, next
     } catch (e) { next(e); }
 }
 
+module.exports.ensurePermissions = function ensurePermissions(req, res, next) {
+    try {
+        if (req.user && req.user.isAdmin) next();
+        else res.redirect('/');
+    } catch (e) { next(e); }
+}
+
 module.exports.usersRouter = router;

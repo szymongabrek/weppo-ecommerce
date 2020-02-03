@@ -7,10 +7,8 @@
                         <div class="row">
                             <div class="col-md-5 col-sm-5 col-xs-12">                              
                                 <a class="aa-product-img" href="#">
-                                    <!-- temporary text description instead of image -->
                                     <div>
                                         <img src="https://picsum.photos/270/300" alt="{{product.name}}">
-                                        {{!-- <p class="aa-product-descrip">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate eveniet veritatis, eius hic ducimus vero magni facere itaque quos impedit, necessitatibus modi reprehenderit consequatur atque esse nobis facilis ea laboriosam.</p> --}}
                                     </div>
                                 </a>
                             </div>
@@ -21,12 +19,16 @@
                                         <span class="aa-product-view-price">{{product.price}} zł</span>
                                         <p class="aa-product-avilability">Avilability: <span>In stock</span></p>
                                     </div>
-                                    <p>{{product.description}}</p> <!-- maybe shorter description here? -->
+                                    <p class="aa-product-short-descrip">{{product.description}}</p>
                                     <p class="aa-prod-category">
-                                            Category: <a href="#">{{product.category}}</a>
+                                            Category: <a href="/products/{{product.category}}">{{product.category}}</a>
                                     </p>
                                     <div class="aa-prod-view-bottom">
                                         <a class="aa-add-to-cart-btn" href="/cart/add/{{product.key}}">Add To Cart</a>
+                                        {{#if user.isAdmin}}
+                                        <a class="aa-add-to-cart-btn" href="/cart/edit/{{product.key}}">Modify</a>
+                                        <a class="aa-add-to-cart-btn" href="/cart/destroy/{{product.key}}">Delete</a>
+                                        {{/if}}
                                     </div>
                                 </div>
                             </div>
@@ -40,7 +42,7 @@
                         </ul>
                         <div>
                             <div class="" id="description">
-                                <p>{{product.description}}</p> <!-- maybe that long af description like in allegro/aliexpress here? -->
+                                <p>{{product.description}}</p>
                             </div>
                         </div>
                     </div>
@@ -49,4 +51,3 @@
         </div>
     </div>
 </section>
-            

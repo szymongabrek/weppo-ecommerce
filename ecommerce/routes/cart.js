@@ -11,7 +11,8 @@ router.get('/', (req, res) => {
             lines: cart.cartLines,
             totalQuantity: cart.productCount,
             totalValue: cart.total
-        }
+        },
+        user: req.user ? req.user : undefined
     });
 });
 
@@ -47,6 +48,23 @@ router.post('/update', async (req, res) => {
     }
     req.session.cart = cartUtils.createCookieCartFromCart(cart);
     res.redirect('/cart');
+});
+
+router.get('/checkout', async (req, res) => {
+    const cart = cartUtils.createCartFromJSON(req.session.cart);
+    res.render('cart/checkout', {
+        title: 'Checkout', 
+        cart: {
+            lines: cart.cartLines,
+            totalQuantity: cart.productCount,
+            totalValue: cart.total
+        },
+        user: req.user ? req.user : undefined
+    });
+});
+
+router.post('/checkout', async (req, res) => {
+    // TODO
 });
 
 module.exports = router;

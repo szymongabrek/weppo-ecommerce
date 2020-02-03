@@ -111,7 +111,7 @@ module.exports.destroy = async function destroy(key) {
       productkey: key
     }
   })
-  return product.destroy();
+  return await product.destroy();
 }
 
 module.exports.search = async function search(term) {
@@ -163,4 +163,20 @@ module.exports.categories = async function categories() {
   // thing below returns a list of objects { DISTINCT: '<categoryName>' }
   const categories = await SQProduct.aggregate('category', 'DISTINCT', { plain: false });
   return categories.map(obj => obj.DISTINCT);
+}
+
+module.exports.findByCategory = async function findByCategory(category) {
+  const SQProduct = await connectDB();
+  const products = await SQProduct.findAll({
+    where: {
+      category: category
+    }
+  });
+  return products.map(product=>new Product({
+    key: product.productkey,
+    name: product.name,
+    description: product.description,
+    price: product.price,
+    category: product.category
+  }));
 }

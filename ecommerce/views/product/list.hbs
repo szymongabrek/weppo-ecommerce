@@ -23,10 +23,6 @@
                             </select>
                             </form>
                         </div>
-                            <div class="aa-product-catg-head-right">
-                                <a id="grid-catg" href="#"><span class="fa fa-th"></span></a>
-                                <a id="list-catg" href="#"><span class="fa fa-list"></span></a>
-                            </div>
                     </div>
                     <div class="aa-product-catg-body">
                         <ul class="aa-product-catg">
@@ -35,11 +31,10 @@
                             <li>
                                 <figure>
                                     <a class="aa-add-card-btn"href="/cart/add/{{key}}"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
-                                    <a class="aa-product-img" href="#">
+                                    <a class="aa-product-img" href="/products/view/{{key}}">
                                         <!-- temporary text description instead of image -->
                                         <div>
                                             <img src="https://picsum.photos/270/300?product={{name}}" alt="{{name}}">
-
                                         </div>
                                     </a>
                                     <figcaption>
@@ -71,34 +66,9 @@
                         <h3>Category</h3>
                         <ul class="aa-catg-nav">
                             {{#each categories}}
-                            <li><a href="#">{{this}}</a></li>
+                            <li><a href="/products/{{this}}">{{this}}</a></li>
                             {{/each}}
                         </ul>
-                    </div>
-                    <!-- single sidebar -->
-                    <div class="aa-sidebar-widget">
-                        <h3>Tags</h3>
-                        <div class="tag-cloud">
-                            <a href="#">Tag 1</a>
-                            <a href="#">Tag 2</a>
-                            <a href="#">Tag 3</a>
-                            <a href="#">Tag 4</a>
-                            <a href="#">Tag 5</a>
-                            <a href="#">Tag 6</a>
-                            <a href="#">Tag 7</a>
-                        </div>
-                    </div>
-                    <!-- single sidebar -->
-                    <div class="aa-sidebar-widget">
-                        <h3>Shop By Price</h3>              
-                        <!-- price range -->
-                        <div class="aa-sidebar-price-range">
-                            <form action="">
-                                <span id="skip-value-lower" class="example-val">30.00</span>
-                                <span id="skip-value-upper" class="example-val">100.00</span>
-                                <button class="aa-filter-btn" type="submit">Filter</button>
-                            </form>
-                        </div>              
                     </div>
                 </aside>
             </div>
