@@ -87,13 +87,14 @@ router.post('/search', (req, res) => {
 
 router.get('/search/:term', async (req, res) => {
   try {
-   
+    let categories = await products.categories();
     const productlist = await products.search(req.params.term);
     
     res.render('product/list', { 
       title: 'Products', 
       productlist: productlist,
       cart: req.session.cart,
+      categories: categories,
       user: req.user ? req.user : undefined
     });
   } catch (e) { next(e); }

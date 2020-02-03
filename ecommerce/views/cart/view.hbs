@@ -21,7 +21,7 @@
                             {{#each cart.lines}}
                             <tr>
                                 <td><a class="remove" href="/cart/remove/{{product.key}}"><i class="fas fa-times"></i></a></td>
-                                <td><a class="aa-cart-title" href="/products/{{product.key}}">{{product.name}}</a></td>
+                                <td><a class="aa-cart-title" href="/products/view/{{product.key}}">{{product.name}}</a></td>
                                 <td>{{product.price}} zł</td>
                                 <!-- quantities[key] doesnt quite work -- result will be literal 'quantities[123...]'
                                 instead of quatities { '123' -> 1, '231' -> 7, and so on.. } -->
