@@ -12,11 +12,15 @@ const router = express.Router();
 const debug = require('debug')('ecommerce:router-users'); 
 const error = require('debug')('ecommerce:error-users');
 
-router.get('/', async (req, res, next) => {
+router.get('/', ensureAuthenticated, ensurePermissions,async (req, res, next) => {
     try {
-        if (!req.user.isAdmin) { res.send('Unauthorized'); }
         const users = await usersModel.listUsers();
-        res.render('user/list', { users });
+        res.render('user/list', { 
+            users,
+            title: 'Users', 
+            cart: req.session.cart,
+            user: req.user ? req.user : undefined
+         });
     } catch (e) { next(e); }
 });
 
@@ -94,8 +98,10 @@ passport.use(new LocalStrategy(
             const check = await usersModel.userPasswordCheck(username, 
             password);
             if (check.check) { 
-                const role = await usersModel.find(username).role;
-                done(null, { id: check.username, username: check.username, isAdmin: role === 'ROLE_ADMIN' }); 
+                const user = await usersModel.find(username);
+                const role = user.role;
+                console.log(role === 'ROLE_ADMIN')
+                done(null, { id: check.username, username: check.username }); 
             } else { 
                 done(null, false, check.message); 
             } 
@@ -120,20 +126,25 @@ module.exports.initPassport = function initPassport(app) {
     app.use(passport.initialize()); 
     app.use(passport.session()); 
 }
- 
-module.exports.ensureAuthenticated = function ensureAuthenticated(req, res, next) { 
+
+function ensureAuthenticated(req, res, next) { 
     try {
         // req.user is set by Passport in the deserialize function 
         if (req.user) next(); 
-        else res.redirect('/users/login'); 
+        // else res.redirect('/users/login'); 
+        else throw 'Unauthorized';
+    } catch (e) { next(e); }
+}
+ 
+module.exports.ensureAuthenticated = ensureAuthenticated;
+
+function ensurePermissions(req, res, next) {
+    try {
+        if (req.user && req.user.role === 'ROLE_ADMIN') next();
+        else res.send('Unauthorized');
     } catch (e) { next(e); }
 }
 
-module.exports.ensurePermissions = function ensurePermissions(req, res, next) {
-    try {
-        if (req.user && req.user.isAdmin) next();
-        else res.redirect('/');
-    } catch (e) { next(e); }
-}
+module.exports.ensurePermissions = ensurePermissions;
 
 module.exports.usersRouter = router;
